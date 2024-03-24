@@ -1,0 +1,12 @@
+[project]
+name = "SimpleSql"
+version = "0.0.1"
+authors = [
+  { name="Anthony Kalashnikov", email="kalashnikov004@gmail.com" },
+]
+description = "A simple ORM package"
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://github.com/Kalash004/SimpleSQL/"
