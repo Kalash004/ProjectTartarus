@@ -1,6 +1,6 @@
 # ProjectTartarus
 ## Project Title: 
-A clear and concise title for your project.
+<sup><sub>A clear and concise title for your project.</sub></sup>
 ## Description:
 A brief description of what the project does, its purpose, and its key features.
 ## Table of Contents:
