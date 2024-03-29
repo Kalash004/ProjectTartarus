@@ -1,4 +1,6 @@
-# ProjectTartarus</sub></sup><br>
+# ProjectTartarus
+## Project Title: 
+<sup><sub>A clear and concise title for your project.</sub></sup>
 ## Description:
 <sub><sup>*A brief description of what the project does, its purpose, and its key features.*</sup></sub><br></sub></sup><br>
 * Made by: **Anton Kalashnikov**
