@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import typing
+from typing import TYPE_CHECKING
 
 import mysql.connector
 from mysql.connector import DatabaseError
 
-from ... import Config, ConnectionException, ConnectionState
+from ..Exceptions.ConnectionException import ConnectionException
+from ...Models.Enums.StateEnum import ConnectionState
 
+if TYPE_CHECKING:
+    from ... import Config
 
 class SimpleSQLConnector:
     _instance = None

@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ... import Holder, Constraints
+from ...Models.Enums.SimpleConstraintsEnum import SimpleConstraints as Constraints
+from ...Models.Models.SQLHolder import SimpleSQLHolder as Holder
+
 
 if TYPE_CHECKING:
     from ... import SimpleReference

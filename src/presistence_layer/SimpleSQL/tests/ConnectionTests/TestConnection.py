@@ -1,6 +1,6 @@
 import unittest
 
-from ...src import Config, Connector
+from ...package_src import Config, Connector
 
 
 class TestConnectionMethods(unittest.TestCase):

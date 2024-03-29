@@ -3,7 +3,12 @@ from __future__ import annotations
 import typing
 from typing import TYPE_CHECKING
 
-from ... import Connector, Holder, Builder, Constraints
+
+from ..Connector.SimpleSQLConnector import SimpleSQLConnector as Connector
+from ...Models.Models.SQLHolder import SimpleSQLHolder as Holder
+from ..QueryBuilder.QueryBuilder import SimpleQueryBuilder as Builder
+from ...Models.Enums.SimpleConstraintsEnum import SimpleConstraints as Constraints
+
 
 if TYPE_CHECKING:
     from ... import Base
@@ -42,6 +47,7 @@ class Controller:
                 return item[1]
 
     def start(self):
+        # check if table users creates
         try:
             # Build queries
             if self.config is None:

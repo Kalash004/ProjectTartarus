@@ -1,4 +1,4 @@
-from src.presistence_layer.SimpleSQL.src import Base, Param, Types, Constraints, Reference
+from src.presistence_layer.SimpleSQL.package_src import Base, Param, Types, Constraints, Reference
 
 
 # TODO: Create a method which will create after init settings for acrus
@@ -12,8 +12,8 @@ class admin_users(Base):
     password = Param(Types.STRING, Constraints.NOT_NULL)
 
 
-class users(Base):
-    table_name = "users"
+class office_users(Base):
+    table_name = "office_users"
     users_id = Param(Types.INT, Constraints.PK)
     name = Param(Types.STRING, Constraints.NOT_NULL)
     surename = Param(Types.STRING, Constraints.NOT_NULL)
@@ -37,17 +37,17 @@ class system_messages(Base):
 class system_log_ins(Base):
     table_name = "system_log_ins"
     system_log_id = Param(Types.INT, Constraints.PK)
-    days_id = Param(Types.INT, Constraints.PK, Constraints.NOT_NULL, references=Reference(days, "days_id"))
+    days_id = Param(Types.INT, Constraints.NOT_NULL, references=Reference(days, "days_id"))
     f_admin_id = Param(Types.INT, references=Reference(admin_users, "admin_id"))
-    f_user_id = Param(Types.INT, references=Reference(users, "users_id"))
+    f_user_id = Param(Types.INT, references=Reference(office_users, "users_id"))
 
 
 class enterences_to_office(Base):
     table_name = "enterences_to_office"
     enterences_id = Param(Types.INT, Constraints.PK)
-    f_user_id = Param(Types.INT, references=Reference(users, "users_id"))
-    days_id = Param(Types.INT, Constraints.PK, Constraints.NOT_NULL, references=Reference(days, "days_id"))
+    f_user_id = Param(Types.INT, references=Reference(office_users, "users_id"))
+    days_id = Param(Types.INT, Constraints.NOT_NULL, references=Reference(days, "days_id"))
 
 
 class all_tables:
-    all_talbes = [admin_users, users, days, system_messages, system_log_ins, enterences_to_office]
+    all_talbes = [admin_users, office_users, days, system_messages, system_log_ins, enterences_to_office]

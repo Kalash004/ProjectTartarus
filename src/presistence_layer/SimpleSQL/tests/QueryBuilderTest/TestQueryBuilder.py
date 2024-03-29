@@ -1,6 +1,6 @@
 import unittest
 
-from ...src import Param, Types, Base, Constraints, App, Config
+from ...package_src import Param, Types, Base, Constraints, App, Config
 
 
 class Test(Base):
