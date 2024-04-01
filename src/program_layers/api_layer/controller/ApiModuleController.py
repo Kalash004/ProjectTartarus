@@ -1,0 +1,2 @@
+class ApiModuleController:
+    pass
