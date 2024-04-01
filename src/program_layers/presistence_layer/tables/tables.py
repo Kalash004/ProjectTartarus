@@ -51,3 +51,4 @@ class enterences_to_office(Base):
 
 class all_tables:
     all_talbes = [admin_users, office_users, days, system_messages, system_log_ins, enterences_to_office]
+
