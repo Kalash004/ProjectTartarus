@@ -1,3 +1,4 @@
+from src.__models_for_all_layers.data_files.ParsedRequest import ParsedRequest
 from src.__models_for_all_layers.exceptions.APIKeyException import APIKeyException
 from src.__models_for_all_layers.exceptions.BadConnectionProtocolException import BadConnectionProtocolException
 from src.program_layers.api_layer.__models.enums.ProtocolEnum import ProtocolEnum
@@ -8,20 +9,20 @@ from src.program_layers.api_layer.authentificator.Authentificator import Authent
 class RequestParser(IParserBehaviour):
     def __init__(self, authentificator: Authentificator):
         self.DELIMITER = ";"
-        self.method_chain = []
+        self.parse_chain = []
         self.authentificator = authentificator
-        self.add_method(self.api_key_check).add_method(self.set_no_params_none).add_method(self.set_no_data_none)
+        self.add_method(self.api_key_check).add_method(self.set_no_params_none).add_method(
+            self.set_no_data_none).add_method(self.parse_params)
 
-    def parse(self, data: str):
+    def parse(self, data: str) -> ParsedRequest:
         dictionary = self.split_to_key_value(self.split_to_lines(data))
-        for method in self.method_chain:
+        for method in self.parse_chain:
             method(dictionary)
-        # self.executor.execute(dictionary[ProtocolEnum.EVENT.value], dictionary[ProtocolEnum.TABLE.value],
-        #                       parameters=dictionary[ProtocolEnum.PARAMS.value],
-        #                       data=dictionary[ProtocolEnum.DATA.value])
+        return ParsedRequest(dictionary[ProtocolEnum.EVENT.value], dictionary[ProtocolEnum.TABLE.value],
+                             dictionary[ProtocolEnum.PARAMS.value], dictionary[ProtocolEnum.DATA.value])
 
     def add_method(self, func):
-        self.method_chain.append(func)
+        self.parse_chain.append(func)
         return self
 
     def split_to_lines(self, data: str):
@@ -34,7 +35,8 @@ class RequestParser(IParserBehaviour):
         if not self.authentificator.check_api_key(recived_key):
             raise APIKeyException("API Key was wrong")
 
-    def split_to_key_value(self, lines: [str]):
+    @staticmethod
+    def split_to_key_value(lines: [str]):
         dictionary = {}
         for line in lines:
             key_value = line.split("=", 1)
@@ -43,10 +45,23 @@ class RequestParser(IParserBehaviour):
             dictionary[key_value[0].lower()] = key_value[1]
         return dictionary
 
-    def set_no_data_none(self, data: dict[str]):
+    @staticmethod
+    def set_no_data_none(data: dict[str]):
         if not ProtocolEnum.DATA.value in data:
             data[ProtocolEnum.DATA.value] = None
 
-    def set_no_params_none(self, data: dict[str]):
+    @staticmethod
+    def set_no_params_none(data: dict[str]):
         if not ProtocolEnum.PARAMS.value in data:
             data[ProtocolEnum.PARAMS.value] = None
+
+    @staticmethod
+    def parse_params(data: dict[str]):
+        if data[ProtocolEnum.PARAMS.value] is None:
+            return
+        params = data[ProtocolEnum.PARAMS.value].split(",")
+        params_dict = {}
+        for param in params:
+            key_val_param = param.split("=")
+            params_dict[key_val_param[0]] = key_val_param[1]
+        data[ProtocolEnum.PARAMS.value] = params_dict

@@ -1,7 +1,7 @@
 import socket
 import threading
 
-from src.program_layers.api_layer.models.interfaces.IParserBehaviour import IParserBehaviour
+from src.program_layers.api_layer.__models.interfaces.IParserBehaviour import IParserBehaviour
 
 
 class ConnectionLoop:
@@ -11,7 +11,7 @@ class ConnectionLoop:
         self.ADDRESS = address
         self.stop = False
         self.parser: IParserBehaviour = parser
-        self.thread: threading.Thread
+        self.thread = threading.Thread(target=self.run)
         self.answer: str = None
 
     def run(self):
@@ -19,12 +19,14 @@ class ConnectionLoop:
             while not self.stop:
                 data = conn.recv(1024)
                 if data == b'':
+                    self.stop = True
                     return
-                self.answer = None
-                get_response = self.parser.parse(data)
-                data = get_response.execute()
-                # conn.send(data)
+                self.__main_loop(data)
 
     def start_thread(self):
-        self.thread = threading.Thread(target=self.run)
         self.thread.start()
+
+    def __main_loop(self, data):
+        self.answer = None
+        parsed_data = self.parser.parse(data)
+        # TODO: send parsed data to domain rules engine
