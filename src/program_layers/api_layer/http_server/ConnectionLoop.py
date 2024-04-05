@@ -1,7 +1,7 @@
 import socket
 import threading
 
-from src.program_layers.api_layer.__models.interfaces.IParserBehaviour import IParserBehaviour
+from src.program_layers.api_layer.__models.interfaces.IParse import IParserBehaviour
 
 
 class ConnectionLoop:

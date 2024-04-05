@@ -1,10 +1,14 @@
+from src.config_loader.ConfigLoader import ConfigLoader
 from src.utils.Singleton import singleton
 
 
 @singleton
 class Authentificator:
-    def __init__(self, config_file_path):
-        self.file_path = config_file_path
+    conf_loader = ConfigLoader()
+
+    def __init__(self):
+        # TODO: fix
+        self.file_path = self.conf_loader.get_authentification_parameters()
 
     def check_api_key(self, key) -> bool:
         return key == self.__get_api_key()

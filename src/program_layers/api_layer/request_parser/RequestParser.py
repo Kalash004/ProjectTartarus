@@ -2,11 +2,11 @@ from src.__models_for_all_layers.data_files.ParsedRequest import ParsedRequest
 from src.__models_for_all_layers.exceptions.APIKeyException import APIKeyException
 from src.__models_for_all_layers.exceptions.BadConnectionProtocolException import BadConnectionProtocolException
 from src.program_layers.api_layer.__models.enums.ProtocolEnum import ProtocolEnum
-from src.program_layers.api_layer.__models.interfaces.IParserBehaviour import IParserBehaviour
+from src.program_layers.api_layer.__models.interfaces.IParse import IParse
 from src.program_layers.api_layer.authentificator.Authentificator import Authentificator
 
 
-class RequestParser(IParserBehaviour):
+class RequestParser(IParse):
     def __init__(self, authentificator: Authentificator):
         self.DELIMITER = ";"
         self.parse_chain = []
