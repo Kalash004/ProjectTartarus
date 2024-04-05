@@ -7,7 +7,7 @@ class Authentificator:
     conf_loader = ConfigLoader()
 
     def __init__(self):
-        # TODO: fix
+        # TODO: implement
         self.file_path = self.conf_loader.get_authentification_parameters()
 
     def check_api_key(self, key) -> bool:
