@@ -1,9 +1,8 @@
 from src.config_loader.ConfigLoader import ConfigLoader
-from src.utils.Singleton import singleton
+from src.utils.SingletonMeta import SingletonMeta
 
 
-@singleton
-class Authentificator:
+class Authentificator(metaclass=SingletonMeta):
     conf_loader = ConfigLoader()
 
     def __init__(self):

@@ -5,7 +5,7 @@ from src.program_layers.api_layer.request_parser.parse_rules.Parse_APIKeyCheck i
 from src.program_layers.api_layer.request_parser.parse_rules.Parse_Parameters import Parse_Parameters
 from src.program_layers.api_layer.request_parser.parse_rules.Parse_SetNoDataToNone import Parse_SetNoDataToNone
 from src.program_layers.api_layer.request_parser.parse_rules.Parse_SetNoParamsToNone import Parse_SetNoParamsToNone
-from src.utils.Singleton import singleton
+from src.utils.SingletonAnnotations import singleton
 
 
 @singleton
@@ -16,5 +16,5 @@ class ParserFactory:
     def create_parser(self) -> IParse:
         return RequestParser(parse_chain=self.prasing_chain)
 
-    def register(self, chainParser: IChainParse):
+    def register(self, chainParser: IChainParse): 
         self.prasing_chain.append(chainParser)  # type: ignore

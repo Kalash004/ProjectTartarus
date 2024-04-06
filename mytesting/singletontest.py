@@ -1,8 +1,7 @@
-from src.utils.Singleton import singleton
+from src.utils.SingletonMeta import SingletonMeta
 
 
-@singleton
-class my_single:
+class single(metaclass=SingletonMeta):
     def __init__(self, msg):
         self.msg = msg
 
@@ -11,4 +10,8 @@ class my_single:
 
 
 if __name__ == "__main__":
-    my_single("s1 here").hi()
+    s1 = single(msg="H1 its 1")
+    s1.hi()
+    s2 = single(msg="Lmao")  # type:ignore
+    s2.hi()
+    s1.hi()
