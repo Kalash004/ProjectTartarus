@@ -1,5 +1,5 @@
 from src.__models_for_all_layers.interfaces.IFactory import IFactory
-from src.program_layers.api_layer.http_server.APIServer import APIServer
+from src.program_layers.api_layer.http_server.api_server.APIServer import APIServer
 from src.utils.SingletonMeta import SingletonMeta
 
 

@@ -23,6 +23,7 @@ class ApiLayerFactory(metaclass=SingletonMeta):
         self.__SERVER_PORT = self.__CONF_LOADER.get_server_port()
         self.__SERVER_ADDRESS = self.__CONF_LOADER.get_server_address()
         self.__AUTH_FILE_PATH = self.__CONF_LOADER.get_authentification_file_path()
+        self.CONNECTION_LIVE_TIME_SEC = self.__CONF_LOADER.get_connection_life_sec()
 
         self.factory_holder: [IFactory] = []  # note: Might not be needed
 
@@ -42,13 +43,15 @@ class ApiLayerFactory(metaclass=SingletonMeta):
         return auth_factory
 
     def produce_answerer_factory(self, connection: socket.socket, address: str) -> IFactory:
-        answerer_factory = AnswererFactory(connection=connection, address=address)
+        answerer_factory = AnswererFactory(connection=connection, address=address,
+                                           life_time_sec=self.CONNECTION_LIVE_TIME_SEC)
         self.factory_holder.append(answerer_factory)
         return answerer_factory
 
     def produce_reader_factory(self, connection: socket.socket, address: str) -> IFactory:
         parser = self.produce_parser_factory().produce()
-        reader_factory = ReaderFactory(connection=connection, address=address, parser=parser)
+        reader_factory = ReaderFactory(connection=connection, address=address,
+                                       life_time_sec=self.CONNECTION_LIVE_TIME_SEC, parser=parser)
         self.factory_holder.append(reader_factory)
         return reader_factory
 

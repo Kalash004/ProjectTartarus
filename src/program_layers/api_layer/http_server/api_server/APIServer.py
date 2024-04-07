@@ -1,7 +1,7 @@
 import socket
 
 from src.config_loader.ConfigLoader import ConfigLoader
-from src.program_layers.api_layer.http_server.ConnectionManager import ConnectionManager
+from src.program_layers.api_layer.http_server.connection_manager.ConnectionManager import ConnectionManager
 from src.utils.SingletonMeta import SingletonMeta
 
 
@@ -34,13 +34,18 @@ class APIServer(metaclass=SingletonMeta):
 
     def stop(self):
         self.stop = True
+        for conns in self.connections:
+            conns.stop()
 
-    def __get_port_from_config(self) -> int:
-        # self.CONFIG_LOADER_SINGLETON
-        pass
 
-    def __get_host_from_config(self) -> str:
-        pass
+def __get_port_from_config(self) -> int:
+    # self.CONFIG_LOADER_SINGLETON
+    pass
 
-    def __get_listening_limit(self) -> int:
-        pass
+
+def __get_host_from_config(self) -> str:
+    pass
+
+
+def __get_listening_limit(self) -> int:
+    pass

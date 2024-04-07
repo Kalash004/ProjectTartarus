@@ -19,3 +19,6 @@ class ConfigLoader(metaclass=SingletonMeta):
 
     def get_server_listening_limit(self) -> int:
         raise NotImplemented
+
+    def get_connection_life_sec(self):
+        raise NotImplemented

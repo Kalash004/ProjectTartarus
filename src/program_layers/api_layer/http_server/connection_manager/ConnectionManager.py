@@ -4,16 +4,17 @@ import threading
 from src.program_layers.api_layer.__models.interfaces.IParse import IParse
 from src.program_layers.api_layer.api_layer_factories.api_layer_sub_factories.a_main_api_layer_factory.ApiLayerFactory import \
     ApiLayerFactory
-from src.program_layers.api_layer.http_server.Answerer import Answerer
-from src.program_layers.api_layer.http_server.Reader import Reader
+from src.program_layers.api_layer.http_server.answerer.Answerer import Answerer
+from src.program_layers.api_layer.http_server.reader.Reader import Reader
 
 
 class ConnectionManager:
     """This holds and manipulates answerer and reader objects."""
 
-    def __init__(self, connection: socket.socket, address: str):
+    def __init__(self, connection: socket.socket, address: str, connection_live_time_sec):
         self.connection: socket.socket = connection
         self.address = address
+        self.connection_live_time_sec = connection_live_time_sec
         self.parser: IParse = ApiLayerFactory().produce_parser_factory().produce()
         self.reader: Reader = ApiLayerFactory().produce_reader_factory(connection, address).produce()
         self.answerer: Answerer = ApiLayerFactory().produce_answerer_factory(connection, address).produce()
@@ -36,9 +37,14 @@ class ConnectionManager:
     def stop(self):
         self.reader.stop()
         self.answerer.stop()
+        self._stop_threads()
         self.stop = True
 
     def __check_stop(self):
         while not self.stop:
             pass
         # TODO: Finish
+
+    def _stop_threads(self):
+        for t in self.threads.values():
+            t.join(1)

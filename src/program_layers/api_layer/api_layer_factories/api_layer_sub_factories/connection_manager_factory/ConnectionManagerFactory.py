@@ -1,7 +1,7 @@
 import socket
 
 from src.__models_for_all_layers.interfaces.IFactory import IFactory
-from src.program_layers.api_layer.http_server.ConnectionManager import ConnectionManager
+from src.program_layers.api_layer.http_server.connection_manager.ConnectionManager import ConnectionManager
 from src.utils.SingletonMeta import SingletonMeta
 
 

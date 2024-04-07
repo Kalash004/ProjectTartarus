@@ -1,6 +1,6 @@
 import socket
 
-from src.program_layers.api_layer.http_server.APIServer import HttpServer
+from src.program_layers.api_layer.http_server.api_server.APIServer import HttpServer
 
 
 class ConnectionToServerTester:
