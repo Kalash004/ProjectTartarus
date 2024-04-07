@@ -1,4 +1,4 @@
-from src.models_for_all_layers.interfaces.ICommand import ICommand
+from src.__models_for_all_layers.interfaces.ICommand import ICommand
 
 
 class DisplayErrorCommand(ICommand):

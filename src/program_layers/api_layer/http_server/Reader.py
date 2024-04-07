@@ -28,12 +28,16 @@ class Reader:
 
     def __main_loop(self, connection):
         data = self.recieve_data()
-        self.send_data()
-        parsed_data = self.parser.parse(data)
+        if data is not None:
+            parsed_data = self.parser.parse(data)
         # TODO: send parsed data to domain rules engine
 
-    def recieve_data(self, connection: socket.socket):
-        data = connection.recv(1024)
+    def recieve_data(self):
+        data = self.CONNECTION.recv(1024)
         if data == b'':
             self.stop = True
-            return
+            return None
+        return str(data)
+
+    def stop(self):
+        self.stop = True
