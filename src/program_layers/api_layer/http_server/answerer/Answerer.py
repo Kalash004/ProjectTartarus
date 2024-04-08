@@ -7,11 +7,10 @@ class Answerer:
         Created from ConnectionManager
     """
 
-    def __init__(self, connection: socket.socket, adress, life_time_sec: int):
+    def __init__(self, connection: socket.socket, adress: str):
         self.connection: socket.socket = connection
         self.adress = adress
         self.message = None
-        self.life_time_sec = life_time_sec
         self.stop = False
 
     def run(self):

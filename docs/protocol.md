@@ -56,7 +56,7 @@ USERS.NAME=ANTON <br>
 
 ### Get an object from the table
 
-APIKEY=abcdapikey123;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON,TOP=1)
+APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON,TOP=1)
 
 ### Insert and object to the table
 

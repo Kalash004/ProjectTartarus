@@ -1,6 +1,8 @@
 import socket
 
 from src.config_loader.ConfigLoader import ConfigLoader
+from src.program_layers.api_layer.api_layer_factories.connection_manager_factory.ConnectionManagerFactory import \
+    ConnectionManagerFactory
 from src.program_layers.api_layer.http_server.connection_manager.ConnectionManager import ConnectionManager
 from src.utils.SingletonMeta import SingletonMeta
 
@@ -21,16 +23,16 @@ class APIServer(metaclass=SingletonMeta):
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as _soc:
                 _soc.bind((self.ADRESS, self.PORT))
-                _soc.listen(self.__get_listening_limit())
+                _soc.listen(5)
                 print(f"Running on {self.ADRESS}:{self.PORT}")
                 while not self.stop:
                     connection, addres = _soc.accept()
-                    connection_manager = ConnectionManager(connection, addres)
+                    connection_manager = ConnectionManagerFactory(connection, addres).produce()
                     connection_manager.start()
                     self.connections.append(connection_manager)
-        except:
+        except Exception as e:
             # TODO: try catch
-            pass
+            print(e)
 
     def stop(self):
         self.stop = True

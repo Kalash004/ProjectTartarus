@@ -7,11 +7,10 @@ from src.program_layers.api_layer.__models.interfaces.IParse import IParse
 class Reader:
     """This reads requests from clients"""
 
-    def __init__(self, connection: socket.socket, address: str, parser: IParse, life_time_sec: int):
+    def __init__(self, connection: socket.socket, address: str, parser: IParse):
         self.CONNECTION: socket.socket = connection
         self.ADDRESS = address
         self.parser: IParse = parser
-        self.life_time_sec = life_time_sec
         self.thread = threading.Thread(target=self.run)
         self.stop = False
 
@@ -19,11 +18,7 @@ class Reader:
         # TODO: add life time checker
         with self.CONNECTION as conn:
             while not self.stop:
-                data = conn.recv(1024)
-                if data == b'':
-                    self.stop = True
-                    return
-                self.__main_loop(data)
+                self.__main_loop(conn)
 
     def start_thread(self):
         self.thread.start()
@@ -39,7 +34,7 @@ class Reader:
         if data == b'':
             self.stop = True
             return None
-        return str(data)
+        return data.decode("ascii")
 
     def stop(self):
         self.stop = True
