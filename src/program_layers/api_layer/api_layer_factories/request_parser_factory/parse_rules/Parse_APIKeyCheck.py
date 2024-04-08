@@ -1,12 +1,13 @@
 from src.__models_for_all_layers.exceptions.APIKeyException import APIKeyException
 from src.program_layers.api_layer.__models.interfaces.IChainParse import IChainParse
-from src.program_layers.api_layer.api_layer_factories.api_layer_sub_factories.a_main_api_layer_factory.ApiLayerFactory import \
-    ApiLayerFactory
+
+from src.program_layers.api_layer.api_layer_factories.authentificator_factory.AuthentificatorFactory import \
+    AuthentificatorFactory
 
 
 class Parse_APIKeyCheck(IChainParse):
     def __init__(self):
-        self.authentificator = ApiLayerFactory().produce_auth_factory().produce()
+        self.authentificator = AuthentificatorFactory().produce()
 
     def parse(self, data: dict[str]) -> dict[str]:
         if not data["apikey"]:

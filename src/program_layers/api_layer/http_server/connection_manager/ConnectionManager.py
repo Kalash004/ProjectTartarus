@@ -1,9 +1,9 @@
 import socket
 import threading
 
-from src.program_layers.api_layer.__models.interfaces.IParse import IParse
-from src.program_layers.api_layer.api_layer_factories.api_layer_sub_factories.a_main_api_layer_factory.ApiLayerFactory import \
-    ApiLayerFactory
+from src.program_layers.api_layer.api_layer_factories.answerer_factory.AnswererFactory import \
+    AnswererFactory
+from src.program_layers.api_layer.api_layer_factories.reader_factory.ReaderFactory import ReaderFactory
 from src.program_layers.api_layer.http_server.answerer.Answerer import Answerer
 from src.program_layers.api_layer.http_server.reader.Reader import Reader
 
@@ -15,9 +15,8 @@ class ConnectionManager:
         self.connection: socket.socket = connection
         self.address = address
         self.connection_live_time_sec = connection_live_time_sec
-        self.parser: IParse = ApiLayerFactory().produce_parser_factory().produce()
-        self.reader: Reader = ApiLayerFactory().produce_reader_factory(connection, address).produce()
-        self.answerer: Answerer = ApiLayerFactory().produce_answerer_factory(connection, address).produce()
+        self.reader: Reader = ReaderFactory(connection, address).produce()
+        self.answerer: Answerer = AnswererFactory(connection, address).produce()
         self.threads: dict[str:threading.Thread] = {}
         self.stop = False
 
