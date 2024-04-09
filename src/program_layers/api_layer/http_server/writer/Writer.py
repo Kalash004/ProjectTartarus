@@ -15,22 +15,23 @@ class Answerer:
 
     def run(self):
         # TODO: add life time checker
-        while not self.stop:
-            self.__main_loop()
+        with self.connection as conn:
+            while not self.stop:
+                self.__main_loop(conn)
 
-    def __main_loop(self):
+    def __main_loop(self, conn):
         # TODO: main loop, check if needs to send message, if so send message
         if self.message is None:
             return
-        self._send_and_clean()
+        self._send_and_clean(conn)
 
     def stop(self):
         self.send_specific_message("Service was stopped, bye.")
         self.stop = True
 
-    def _send_and_clean(self):
-        self.connection.send(self.message)
+    def _send_and_clean(self, conn):
+        conn.send(self.message)
         self.message = None
 
     def send_specific_message(self, message):
-        self.connection.send(message)
+        self.connection.send(message.encode())

@@ -62,4 +62,3 @@ APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON,TOP=1)
 
 APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA={[{"id":1,"name":"Anton"},{"id":2,
 "name":"Notna"}]}
-

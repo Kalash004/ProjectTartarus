@@ -9,7 +9,6 @@ from src.exception_handler.exception_handle_instructions.client_except_handlers.
     ApiExceptionHandler
 from src.exception_handler.exception_handle_instructions.client_except_handlers.UnknownClientExceptionHandler import \
     UnknownClientExceptionHandler
-from src.program_layers.api_layer.http_server.connection_manager.ConnectionManager import ConnectionManager
 from src.utils.SingletonMeta import SingletonMeta
 
 
@@ -27,11 +26,11 @@ class ExceptionHandler(IHandleException, IHandleClientException, metaclass=Singl
     def handle_exceptions(self, exception: BaseException):
         if type(exception) not in self._exception_instructions:
             self._exception_instructions[UnknownException].handle_exceptions(exception)
+            return
         self._exception_instructions[type(exception)].handle_exceptions(exception)  # type: ignore
 
-    def handle_client_exception(self, exception: BaseException, connection_manager: ConnectionManager):
+    def handle_client_exception(self, exception: BaseException, connection_manager):
         if type(exception) not in self._client_exception_instructions:
-            self._client_exception_instructions[UnknownClientException].handle_client_exception(exception,
-                                                                                                connection_manager)
-        self._client_exception_instructions[type(exception)].handle_client_exception(exception,  # type: ignore
-                                                                                     connection_manager)
+            self._client_exception_instructions[UnknownClientException].handle_client_exception(exception, connection_manager)
+            return
+        self._client_exception_instructions[type(exception)].handle_client_exception(exception, connection_manager)  # type: ignore

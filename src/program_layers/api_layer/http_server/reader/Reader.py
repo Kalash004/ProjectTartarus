@@ -22,7 +22,7 @@ class Reader:
             while not self.stop:
                 try:
                     self.__main_loop(conn)
-                except Exception as e:
+                except BaseException as e:
                     ExceptionHandler().handle_client_exception(e, self.connection_manager)
 
     def start_thread(self):

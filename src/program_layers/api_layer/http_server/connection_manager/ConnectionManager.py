@@ -4,12 +4,12 @@ import threading
 from src.program_layers.api_layer.api_layer_factories.answerer_factory.AnswererFactory import \
     AnswererFactory
 from src.program_layers.api_layer.api_layer_factories.reader_factory.ReaderFactory import ReaderFactory
-from src.program_layers.api_layer.http_server.answerer.Answerer import Answerer
+from src.program_layers.api_layer.http_server.writer.Writer import Answerer
 from src.program_layers.api_layer.http_server.reader.Reader import Reader
 
 
 class ConnectionManager:
-    """This holds and manipulates answerer and reader objects."""
+    """This holds and manipulates writer and reader objects."""
 
     def __init__(self, connection: socket.socket, address: str, connection_live_time_sec):
         self.connection: socket.socket = connection
@@ -26,7 +26,7 @@ class ConnectionManager:
 
     def __create_threads(self):
         self.threads["reader"] = threading.Thread(target=self.reader.run)
-        self.threads["answerer"] = threading.Thread(target=self.answerer.run)
+        self.threads["writer"] = threading.Thread(target=self.answerer.run)
 
     def __start_threads(self):
         self.__create_threads()

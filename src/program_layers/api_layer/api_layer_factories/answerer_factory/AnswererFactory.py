@@ -1,7 +1,7 @@
 import socket
 
 from src.__models_for_all_layers.interfaces.IFactory import IFactory
-from src.program_layers.api_layer.http_server.answerer.Answerer import Answerer
+from src.program_layers.api_layer.http_server.writer.Writer import Answerer
 from src.utils.SingletonMeta import SingletonMeta
 
 

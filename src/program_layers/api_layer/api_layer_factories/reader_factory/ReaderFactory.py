@@ -16,4 +16,5 @@ class ReaderFactory(IFactory, metaclass=SingletonMeta):
         self.parser: IParse = ParserFactory().produce()
 
     def produce(self):
-        return Reader(connection=self.connection, address=self.address, parser=self.parser)
+        return Reader(connection=self.connection, address=self.address, parser=self.parser,
+                      conn_manager=self.conn_manager)
