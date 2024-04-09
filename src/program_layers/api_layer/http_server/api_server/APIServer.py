@@ -1,6 +1,7 @@
 import socket
 
 from src.config_loader.ConfigLoader import ConfigLoader
+from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.api_layer_factories.connection_manager_factory.ConnectionManagerFactory import \
     ConnectionManagerFactory
 from src.program_layers.api_layer.http_server.connection_manager.ConnectionManager import ConnectionManager
@@ -31,8 +32,7 @@ class APIServer(metaclass=SingletonMeta):
                     connection_manager.start()
                     self.connections.append(connection_manager)
         except Exception as e:
-            # TODO: try catch
-            print(e)
+            ExceptionHandler().handle_exceptions(e)
 
     def stop(self):
         self.stop = True

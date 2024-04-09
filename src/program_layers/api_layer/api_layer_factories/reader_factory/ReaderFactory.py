@@ -9,9 +9,10 @@ from src.utils.SingletonMeta import SingletonMeta
 
 
 class ReaderFactory(IFactory, metaclass=SingletonMeta):
-    def __init__(self, connection: socket.socket, address: str):
+    def __init__(self, connection: socket.socket, address: str, conn_manager):
         self.connection = connection
         self.address = address
+        self.conn_manager = conn_manager
         self.parser: IParse = ParserFactory().produce()
 
     def produce(self):

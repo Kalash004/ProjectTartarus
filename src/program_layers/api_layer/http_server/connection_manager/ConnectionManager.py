@@ -15,7 +15,7 @@ class ConnectionManager:
         self.connection: socket.socket = connection
         self.address = address
         self.connection_live_time_sec = connection_live_time_sec
-        self.reader: Reader = ReaderFactory(connection, address).produce()
+        self.reader: Reader = ReaderFactory(connection, address, self).produce()
         self.answerer: Answerer = AnswererFactory(connection, address).produce()
         self.threads: dict[str:threading.Thread] = {}
         self.stop = False
