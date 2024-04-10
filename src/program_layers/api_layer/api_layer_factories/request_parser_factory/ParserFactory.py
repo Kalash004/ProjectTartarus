@@ -10,10 +10,9 @@ from src.program_layers.api_layer.api_layer_factories.request_parser_factory.par
 from src.program_layers.api_layer.api_layer_factories.request_parser_factory.parse_rules.Parse_SetNoParamsToNone import \
     Parse_SetNoParamsToNone
 from src.program_layers.api_layer.request_parser.RequestParser import RequestParser
-from src.utils.SingletonMeta import SingletonMeta
 
 
-class ParserFactory(IFactory, metaclass=SingletonMeta):
+class ParserFactory(IFactory):
     prasing_chain: [IChainParse] = [Parse_APIKeyCheck(), Parse_SetNoParamsToNone(), Parse_SetNoDataToNone(),
                                     Parse_Parameters()]
 

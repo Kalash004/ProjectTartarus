@@ -8,7 +8,7 @@ from src.program_layers.api_layer.http_server.reader.Reader import Reader
 from src.utils.SingletonMeta import SingletonMeta
 
 
-class ReaderFactory(IFactory, metaclass=SingletonMeta):
+class ReaderFactory(IFactory):
     def __init__(self, connection: socket.socket, address: str, conn_manager):
         self.connection = connection
         self.address = address

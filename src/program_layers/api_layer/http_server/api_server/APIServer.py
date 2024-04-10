@@ -37,7 +37,7 @@ class APIServer(metaclass=SingletonMeta):
     def stop(self):
         self.stop = True
         for conns in self.connections:
-            conns.stop()
+            conns.stop_flag()
 
 
 def __get_port_from_config(self) -> int:

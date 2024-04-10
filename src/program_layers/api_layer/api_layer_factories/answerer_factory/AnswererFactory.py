@@ -5,7 +5,7 @@ from src.program_layers.api_layer.http_server.writer.Writer import Answerer
 from src.utils.SingletonMeta import SingletonMeta
 
 
-class AnswererFactory(IFactory, metaclass=SingletonMeta):
+class AnswererFactory(IFactory):
     def __init__(self, connection: socket.socket, address: str):
         self.conn = connection
         self.adr = address

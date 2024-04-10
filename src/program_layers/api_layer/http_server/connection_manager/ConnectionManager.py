@@ -1,30 +1,32 @@
 import socket
 import threading
 
+from src.__models_for_all_layers.interfaces.IStopable import IStopable
 from src.program_layers.api_layer.api_layer_factories.answerer_factory.AnswererFactory import \
     AnswererFactory
 from src.program_layers.api_layer.api_layer_factories.reader_factory.ReaderFactory import ReaderFactory
-from src.program_layers.api_layer.http_server.writer.Writer import Answerer
+from src.program_layers.api_layer.api_layer_factories.watchdog_factory.WatchdogFactory import WatchdogFactory
 from src.program_layers.api_layer.http_server.reader.Reader import Reader
+from src.program_layers.api_layer.http_server.writer.Writer import Answerer
 
 
-class ConnectionManager:
+class ConnectionManager(IStopable):
     """This holds and manipulates writer and reader objects."""
 
-    def __init__(self, connection: socket.socket, address: str, connection_live_time_sec):
+    def __init__(self, connection: socket.socket, address: str):
         self.connection: socket.socket = connection
         self.address = address
-        self.connection_live_time_sec = connection_live_time_sec
         self.reader: Reader = ReaderFactory(connection, address, self).produce()
         self.answerer: Answerer = AnswererFactory(connection, address).produce()
         self.threads: dict[str:threading.Thread] = {}
-        self.stop = False
+        self.conn_timeout_watchdog = WatchdogFactory(self).produce()
 
     def start(self):
         self.__start_threads()
         self.__check_stop()
 
     def __create_threads(self):
+        self.threads["watchdog"] = threading.Thread(target=self.conn_timeout_watchdog.worker)
         self.threads["reader"] = threading.Thread(target=self.reader.run)
         self.threads["writer"] = threading.Thread(target=self.answerer.run)
 
@@ -34,10 +36,10 @@ class ConnectionManager:
             t.start()
 
     def stop(self):
+        print("Stopping")
         self.reader.stop()
         self.answerer.stop()
-        self._stop_threads()
-        self.stop = True
+        # self._stop_threads()
 
     def __check_stop(self):
         while not self.stop:
@@ -46,4 +48,4 @@ class ConnectionManager:
 
     def _stop_threads(self):
         for t in self.threads.values():
-            t.join(1)
+            t.join()

@@ -29,7 +29,7 @@ class ConfigLoader(metaclass=SingletonMeta):
     def get_server_listening_limit(self) -> int:
         raise NotImplemented
 
-    def get_connection_life_sec(self) -> str:
+    def get_connection_life_sec(self) -> int:
         return self.read_json_file(self.API_SERVER_FILE_PATH, self.CONNECTION_LIFE_SEC_VAR_NAME)[0]
 
     @staticmethod

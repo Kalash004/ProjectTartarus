@@ -1,6 +1,8 @@
 import socket
 import threading
 
+from src.__models_for_all_layers.exceptions.BaseExceptions.ClientBaseException import ClientBaseException
+from src.__models_for_all_layers.exceptions.BaseExceptions.ServiceBaseException import ServiceBaseException
 from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.__models.interfaces.IParse import IParse
 
@@ -14,16 +16,27 @@ class Reader:
         self.parser: IParse = parser
         self.thread = threading.Thread(target=self.run)
         self.connection_manager = conn_manager
-        self.stop = False
+        self.stop_flag = False
 
     def run(self):
         # TODO: add life time checker
         with self.CONNECTION as conn:
-            while not self.stop:
+            while not self.stop_flag:
                 try:
                     self.__main_loop(conn)
-                except BaseException as e:
-                    ExceptionHandler().handle_client_exception(e, self.connection_manager)
+                except ClientBaseException as ce:
+                    ExceptionHandler().handle_client_exception(ce, self.connection_manager)
+                except ServiceBaseException as se:
+                    ExceptionHandler().handle_exceptions(se)
+                    conn.close()
+                except Exception as e:
+                    ExceptionHandler().handle_exceptions(e)
+                    conn.close()
+                except BaseException as be:
+                    ExceptionHandler().handle_exceptions(be)
+                    conn.close()
+            conn.close()
+            return
 
     def start_thread(self):
         self.thread.start()
@@ -35,11 +48,12 @@ class Reader:
         # TODO: send parsed data to domain rules engine
 
     def recieve_data(self):
-        data = self.CONNECTION.recv(1024)
-        if data == b'':
-            self.stop = True
-            return None
-        return data.decode("ascii")
+        if not self.stop_flag:
+            data = self.CONNECTION.recv(1024)
+            if data == b'':
+                self.stop_flag = True
+                return None
+            return data.decode("ascii")
 
     def stop(self):
-        self.stop = True
+        self.stop_flag = True
