@@ -1,5 +1,5 @@
 from src.__models_for_all_layers.interfaces.ICommand import ICommand
-from src.program_layers.api_layer.http_server.connection_manager.ConnectionManager import ConnectionManager
+from src.program_layers.api_layer.http_server.ConnectionManager import ConnectionManager
 
 
 class DisplayErrorCommand(ICommand):
