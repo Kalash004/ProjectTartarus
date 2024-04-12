@@ -1,9 +1,12 @@
 import abc
 
+from src.__models_for_all_layers.data_files.ParsedRequest import ParsedRequest
+
 
 class IRule:
 
-    @staticmethod
     @abc.abstractmethod
-    def use():
+    def use(self, request: ParsedRequest):
         raise NotImplemented
+
+

@@ -60,5 +60,4 @@ APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON,TOP=1)
 
 ### Insert and object to the table
 
-APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA={[{"id":1,"name":"Anton"},{"id":2,
-"name":"Notna"}]}
+APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA=[{id:1,name:Anton},{id:2,name:Notna}]

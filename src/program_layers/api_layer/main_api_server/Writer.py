@@ -1,5 +1,7 @@
 import socket
 
+from src.__utils.socket_utils import socket_open
+
 
 class Answerer:
     """
@@ -17,23 +19,27 @@ class Answerer:
         # TODO: add life time checker
         with self.connection as conn:
             while not self.stop_flag:
-                self.__main_loop(conn)
+                self.__main_loop()
             conn.close()
             return
 
-    def __main_loop(self, conn):
+    def __main_loop(self):
         # TODO: main loop, check if needs to send message, if so send message
         if self.message is None:
             return
-        self._send_and_clean(conn)
+        self._send_and_clean()
 
     def stop(self):
         self.send_specific_message("Service was stopped, bye.")
         self.stop_flag = True
 
-    def _send_and_clean(self, conn):
-        conn.send(self.message)
+    def _send_and_clean(self):
+        if not socket_open(self.connection):
+            return
+        self.connection.send(self.message)
         self.message = None
 
     def send_specific_message(self, message):
+        if not socket_open(self.connection):
+            return
         self.connection.send(message.encode())

@@ -3,8 +3,7 @@ import abc
 
 class IPlugin:
 
-    @staticmethod
     @abc.abstractmethod
-    def initialize() -> None:
+    def initialize(self) -> None:
         """Initialize the plugin"""
         raise NotImplemented

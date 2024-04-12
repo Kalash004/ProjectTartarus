@@ -6,4 +6,4 @@ class ParsedRequest:
     event: str
     table: str
     parameters: str
-    data: str
+    data: [dict]

@@ -1,6 +1,6 @@
 from src.__models_for_all_layers.interfaces.IFactory import IFactory
 from src.config_loader.ConfigLoader import ConfigLoader
-from src.program_layers.api_layer.http_server.TimeWatchdog import TimeWatchdog
+from src.program_layers.api_layer.main_api_server.TimeWatchdog import TimeWatchdog
 
 
 class WatchdogFactory(IFactory):

@@ -5,10 +5,12 @@ from src.__models_for_all_layers.exceptions.BaseExceptions.ClientBaseException i
 from src.__models_for_all_layers.exceptions.BaseExceptions.ServiceBaseException import ServiceBaseException
 from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.__models.interfaces.IParse import IParse
+from src.program_layers.api_layer.business_layer_connector.BusinessLayerConnector import BusinessLayerConnector
 
 
 class Reader:
     """This reads requests from clients"""
+    lock = threading.Lock()
 
     def __init__(self, connection: socket.socket, address: str, parser: IParse, conn_manager):
         self.CONNECTION: socket.socket = connection
@@ -43,9 +45,10 @@ class Reader:
 
     def __main_loop(self, connection):
         data = self.recieve_data()
-        if data is not None:
-            parsed_data = self.parser.parse(data)
-        # TODO: send parsed data to domain rules engine
+        if data is None:
+            return
+        parsed_request = self.parser.parse(data)
+        BusinessLayerConnector().execute(parsed_request, self.connection_manager, self.lock)
 
     def recieve_data(self):
         if not self.stop_flag:

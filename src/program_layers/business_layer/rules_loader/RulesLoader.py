@@ -1,7 +1,7 @@
 import importlib
 
+from src.__utils.SingletonMeta import SingletonMeta
 from src.program_layers.business_layer.__models.Interfaces.IPlugin import IPlugin
-from src.utils.SingletonMeta import SingletonMeta
 
 
 class RulesLoader(metaclass=SingletonMeta):

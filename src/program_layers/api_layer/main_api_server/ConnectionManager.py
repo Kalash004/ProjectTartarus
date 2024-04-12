@@ -6,8 +6,6 @@ from src.program_layers.api_layer.api_layer_factories.AnswererFactory import \
     AnswererFactory
 from src.program_layers.api_layer.api_layer_factories.ReaderFactory import ReaderFactory
 from src.program_layers.api_layer.api_layer_factories.WatchdogFactory import WatchdogFactory
-from src.program_layers.api_layer.http_server.Reader import Reader
-from src.program_layers.api_layer.http_server.Writer import Answerer
 
 
 class ConnectionManager(IStopable):
@@ -16,8 +14,8 @@ class ConnectionManager(IStopable):
     def __init__(self, connection: socket.socket, address: str):
         self.connection: socket.socket = connection
         self.address = address
-        self.reader: Reader = ReaderFactory(connection, address, self).produce()
-        self.answerer: Answerer = AnswererFactory(connection, address).produce()
+        self.reader = ReaderFactory(connection, address, self).produce()
+        self.answerer = AnswererFactory(connection, address).produce()
         self.threads: dict[str:threading.Thread] = {}
         self.conn_timeout_watchdog = WatchdogFactory(self).produce()
 

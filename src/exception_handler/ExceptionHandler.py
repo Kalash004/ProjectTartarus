@@ -9,7 +9,7 @@ from src.exception_handler.exception_handle_instructions.client_except_handlers.
     ApiExceptionHandler
 from src.exception_handler.exception_handle_instructions.client_except_handlers.UnknownClientExceptionHandler import \
     UnknownClientExceptionHandler
-from src.utils.SingletonMeta import SingletonMeta
+from src.__utils.SingletonMeta import SingletonMeta
 
 
 class ExceptionHandler(IHandleException, IHandleClientException, metaclass=SingletonMeta):

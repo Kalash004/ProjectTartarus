@@ -2,5 +2,5 @@ from src.__models_for_all_layers.exceptions.BaseExceptions.ClientBaseException i
 
 
 class UnknownClientException(ClientBaseException):
-    def __init__(self):
-        pass
+    def __init__(self, msg):
+        self.msg = msg

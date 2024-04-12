@@ -1,7 +1,7 @@
 from src.__models_for_all_layers.interfaces.IFactory import IFactory
 from src.config_loader.ConfigLoader import ConfigLoader
-from src.program_layers.api_layer.http_server.APIServer import APIServer
-from src.utils.SingletonMeta import SingletonMeta
+from src.program_layers.api_layer.main_api_server.APIServer import APIServer
+from src.__utils.SingletonMeta import SingletonMeta
 
 
 class ApiServerFactory(IFactory, metaclass=SingletonMeta):

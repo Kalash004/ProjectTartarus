@@ -1,7 +1,7 @@
 from src.__models_for_all_layers.interfaces.IFactory import IFactory
+from src.__utils.SingletonMeta import SingletonMeta
 from src.config_loader.ConfigLoader import ConfigLoader
 from src.program_layers.business_layer.rules_loader.RulesLoader import RulesLoader
-from src.utils.SingletonMeta import SingletonMeta
 
 
 class RulesLoaderFactory(IFactory, metaclass=SingletonMeta):

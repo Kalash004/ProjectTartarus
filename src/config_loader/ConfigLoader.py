@@ -1,6 +1,6 @@
 import os
 
-from src.utils.SingletonMeta import SingletonMeta
+from src.__utils.SingletonMeta import SingletonMeta
 
 
 class ConfigLoader(metaclass=SingletonMeta):

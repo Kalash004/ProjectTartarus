@@ -4,8 +4,7 @@ from src.config_loader.ConfigLoader import ConfigLoader
 from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.api_layer_factories.ConnectionManagerFactory import \
     ConnectionManagerFactory
-from src.program_layers.api_layer.http_server.ConnectionManager import ConnectionManager
-from src.utils.SingletonMeta import SingletonMeta
+from src.__utils.SingletonMeta import SingletonMeta
 
 
 class APIServer(metaclass=SingletonMeta):
@@ -18,7 +17,7 @@ class APIServer(metaclass=SingletonMeta):
         self.PORT: int = port
         self.ADRESS: str = adress
         self.stop: bool = False
-        self.connections: [ConnectionManager] = []
+        self.connections = []
 
     def run(self):
         try:

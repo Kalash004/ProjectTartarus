@@ -1,4 +1,4 @@
-from src.utils.SingletonMeta import SingletonMeta
+from src.__utils.SingletonMeta import SingletonMeta
 
 
 class single(metaclass=SingletonMeta):
