@@ -3,12 +3,10 @@ from __future__ import annotations
 import typing
 from typing import TYPE_CHECKING
 
-
 from ..Connector.SimpleSQLConnector import SimpleSQLConnector as Connector
-from ...Models.Models.SQLHolder import SimpleSQLHolder as Holder
 from ..QueryBuilder.QueryBuilder import SimpleQueryBuilder as Builder
 from ...Models.Enums.SimpleConstraintsEnum import SimpleConstraints as Constraints
-
+from ...Models.Models.SQLHolder import SimpleSQLHolder as Holder
 
 if TYPE_CHECKING:
     from ... import Base
@@ -157,7 +155,7 @@ class Controller:
         # TODO: Separate query building to QueryBuilder
         """
         :param obj: Class of the table: SimpleSQL.Base
-        :param selectors: [field, operator, value]
+        :param selectors: [field, operator, value],[...]
         :return:
         """
         for item in selectors:
@@ -246,7 +244,7 @@ class Controller:
     def delete_data_id(self, obj, obj_id):
         table_name = obj.table_name
         pk = self.__find_primary_key_name(obj)
-        query = self.__query_obj[table_name].delete
+        query = self.__query_obj[table_name].DeleteCommand
         try:
             resp = self.connector.query(
                 {
@@ -262,7 +260,7 @@ class Controller:
         # TODO: ADD INPUT CHECK
         table_name = to_delete.table_name
         pk = self.__find_primary_key_value(to_delete)
-        query = self.__query_obj[table_name].delete
+        query = self.__query_obj[table_name].DeleteCommand
         try:
             resp = self.connector.query(
                 {
@@ -320,7 +318,7 @@ class Controller:
         if hold.__name__ == "type":
             hold = obj
         mapped_obj = hold(skip_setup=True)
-        mapped_obj.map(resp)
+        mapped_obj.__map(resp)
         return mapped_obj
 
     def __map_arrays_to_obj_array(self, obj, resp):

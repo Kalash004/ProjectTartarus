@@ -6,7 +6,7 @@ from src.program_layers.business_layer.rules_loader.RulesLoader import RulesLoad
 
 class RulesLoaderFactory(IFactory, metaclass=SingletonMeta):
     def __init__(self, controller):
-        self.rule_names = ConfigLoader().load_rule_names()
+        self.rule_names = ConfigLoader().rule_conf_loader.load_rule_names()
         self.controller = controller
 
     def produce(self):

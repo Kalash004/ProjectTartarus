@@ -3,10 +3,10 @@ import threading
 
 from src.__models_for_all_layers.interfaces.IStopable import IStopable
 from src.exception_handler.ExceptionHandler import ExceptionHandler
-from src.program_layers.api_layer.api_layer_factories.AnswererFactory import \
+from src.program_layers.api_layer.factory.AnswererFactory import \
     AnswererFactory
-from src.program_layers.api_layer.api_layer_factories.ReaderFactory import ReaderFactory
-from src.program_layers.api_layer.api_layer_factories.WatchdogFactory import WatchdogFactory
+from src.program_layers.api_layer.factory.ReaderFactory import ReaderFactory
+from src.program_layers.api_layer.factory.WatchdogFactory import WatchdogFactory
 
 
 class ConnectionManager(IStopable):

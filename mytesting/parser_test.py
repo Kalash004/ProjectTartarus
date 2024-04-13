@@ -1,5 +1,5 @@
 from src.program_layers.api_layer.__models.interfaces.IParse import IParse
-from src.program_layers.api_layer.api_layer_factories.ParserFactory import ParserFactory
+from src.program_layers.api_layer.factory.ParserFactory import ParserFactory
 
 if __name__ == "__main__":
     # "APIKEY=testkey;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON,TOP=1)"
@@ -8,3 +8,6 @@ if __name__ == "__main__":
     prsed = parser.parse("APIKEY=apitestkey2;EVENT=POST;TABLE=USERS;DATA=[{id:1,name:Anton},{id:2,name:Notna}]")
     print(prsed.data)
     print(prsed)
+
+    prsed2 = parser.parse("APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(ID=1,TOP=1)")
+    print(prsed2)

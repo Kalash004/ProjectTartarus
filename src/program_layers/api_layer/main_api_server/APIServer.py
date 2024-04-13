@@ -4,7 +4,7 @@ from src.__models_for_all_layers.exceptions.BaseExceptions.ServiceBaseException 
 from src.__utils.SingletonMeta import SingletonMeta
 from src.config_loader.ConfigLoader import ConfigLoader
 from src.exception_handler.ExceptionHandler import ExceptionHandler
-from src.program_layers.api_layer.api_layer_factories.ConnectionManagerFactory import \
+from src.program_layers.api_layer.factory.ConnectionManagerFactory import \
     ConnectionManagerFactory
 
 

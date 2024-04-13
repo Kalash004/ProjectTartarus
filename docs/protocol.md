@@ -30,8 +30,8 @@ Given from administrator. Its needed for verification.
 ### GET
 
 * table.attribute_name=value <br>
-**Example**
-USERS.NAME=ANTON <br>
+  **Example**
+  USERS.NAME=ANTON <br>
 
 <u>**No parameters** return all the data from the database</u>
 
@@ -57,7 +57,12 @@ USERS.NAME=ANTON <br>
 ### Get an object from the table
 
 APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON,TOP=1)
+APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(ID=1)
 
 ### Insert and object to the table
 
-APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA=[{id:1,name:Anton},{id:2,name:Notna}]
+APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA=[{user_id:1,name:Anton},{user_id:2,name:Notna}]
+
+## Supported Parameter Opperators
+
+'='

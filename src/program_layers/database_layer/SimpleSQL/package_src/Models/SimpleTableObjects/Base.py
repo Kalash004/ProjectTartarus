@@ -1,5 +1,6 @@
 import inspect
 
+from ..Enums.SimpleConstraintsEnum import SimpleConstraints
 from ...Models.SimpleTableObjects.SimpleTable import SimpleBaseTable
 
 
@@ -56,3 +57,37 @@ class Base:
                 self.__dict__[attr] = item
         except Exception as ex:
             raise Exception(f"Error while mapping data from database to object : {ex}") from ex
+
+    @classmethod
+    def map_new(cls, data):
+        try:
+            inst = cls(skip_setup=True)
+            for attr, item in data.items():
+                inst.__dict__[attr] = item
+            return inst
+        except Exception as ex:
+            raise Exception(f"Error while mapping data from database to object : {ex}") from ex
+
+    @classmethod
+    def find_primary_key_name(cls):
+        table_name = cls.table_name
+        pk = None
+        structure = cls.get_structure()
+        for k, val in structure.items():
+            if k == "table_name":
+                continue
+            if SimpleConstraints.PK in val.constraints:
+                pk = k
+                break
+        return pk
+
+    @classmethod
+    def get_structure(cls):
+        structure = {}
+        for name, value in cls.__dict__.items():
+            if name.startswith('_'):
+                continue
+            if inspect.ismethod(name):
+                continue
+            structure[name] = value
+        return structure

@@ -16,6 +16,7 @@ class SimpleBaseTable:
         app._add_table(self)
         # Send table object to the controller singleton
 
+    # TODO: here
     def __get_structure(self, pre_struct):
         structure = []
         for i in inspect.getmembers(pre_struct):

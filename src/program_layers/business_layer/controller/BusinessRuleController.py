@@ -2,7 +2,7 @@ from src.__models_for_all_layers.data_files.ParsedRequest import ParsedRequest
 from src.__models_for_all_layers.exceptions.UnknownClientException import UnknownClientException
 from src.__utils.SingletonMeta import SingletonMeta
 from src.program_layers.business_layer.__models.Interfaces.IRule import IRule
-from src.program_layers.business_layer.business_layer_factories.RulesLoaderFactory import RulesLoaderFactory
+from src.program_layers.business_layer.factory.RulesLoaderFactory import RulesLoaderFactory
 from src.program_layers.business_layer.controller.TypeRules import TypeRules
 
 

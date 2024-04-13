@@ -7,6 +7,8 @@ from src.program_layers.api_layer.__models.interfaces.IChainParse import IChainP
 class Parse_Data(IChainParse):
     def parse(self, data: dict[str]) -> dict[str]:
         data_body = data[ProtocolEnum.DATA.value]
+        if not data_body:
+            return data
         pattern = r'\{(.*?)\}'
 
         # Find all matches

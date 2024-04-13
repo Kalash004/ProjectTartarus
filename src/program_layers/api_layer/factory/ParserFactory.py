@@ -6,6 +6,7 @@ from src.program_layers.api_layer.parse_rules.Parse_APIKeyCheck import \
 from src.program_layers.api_layer.parse_rules.Parse_Data import Parse_Data
 from src.program_layers.api_layer.parse_rules.Parse_Parameters import \
     Parse_Parameters
+from src.program_layers.api_layer.parse_rules.Parse_SetMetaDataLower import Parse_SetMetaDataLower
 from src.program_layers.api_layer.parse_rules.Parse_SetNoDataToNone import \
     Parse_SetNoDataToNone
 from src.program_layers.api_layer.parse_rules.Parse_SetNoParamsToNone import \
@@ -14,7 +15,7 @@ from src.program_layers.api_layer.request_parser.RequestParser import RequestPar
 
 
 class ParserFactory(IFactory):
-    prasing_chain: [IChainParse] = [Parse_APIKeyCheck(), Parse_SetNoParamsToNone(), Parse_SetNoDataToNone(),
+    prasing_chain: [IChainParse] = [Parse_SetMetaDataLower(), Parse_APIKeyCheck(), Parse_SetNoParamsToNone(), Parse_SetNoDataToNone(),
                                     Parse_Parameters(), Parse_Data()]
 
     def produce(self):

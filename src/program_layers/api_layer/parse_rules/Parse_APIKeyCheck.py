@@ -1,7 +1,7 @@
 from src.__models_for_all_layers.exceptions.APIKeyException import APIKeyException
 from src.program_layers.api_layer.__models.interfaces.IChainParse import IChainParse
 
-from src.program_layers.api_layer.api_layer_factories.AuthentificatorFactory import \
+from src.program_layers.api_layer.factory.AuthentificatorFactory import \
     AuthentificatorFactory
 
 

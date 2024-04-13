@@ -5,7 +5,7 @@ from src.program_layers.api_layer.main_api_server.TimeWatchdog import TimeWatchd
 
 class WatchdogFactory(IFactory):
     def __init__(self, connection_manager):
-        self.longevity_sec = ConfigLoader().get_connection_life_sec()
+        self.longevity_sec = ConfigLoader().api_conf_loader.get_connection_timeout_sec()
         self.connection_manager = connection_manager
 
     def produce(self):
