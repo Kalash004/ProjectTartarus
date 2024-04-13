@@ -1,8 +1,8 @@
 {
-  "username": "",
-  "password": "",
+  "username": "root",
+  "password": "Ka32167890",
   "database_host": "127.0.0.1",
-  "port": 0,
-  "database_name": "",
+  "port": 3306,
+  "database_name": "tartarus_project",
   "char_set": ""
 }

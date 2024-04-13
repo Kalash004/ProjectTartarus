@@ -12,7 +12,7 @@ class DatabaseController(metaclass=SingletonMeta):
     """This allows clients control the database using parsed requests"""
 
     def __init__(self):
-        self.access = DbAccess()
+        self.access = DbAccess(initialize=True)
         self.__events_mapper = {
             "post": self.post,
             "get": self.get,

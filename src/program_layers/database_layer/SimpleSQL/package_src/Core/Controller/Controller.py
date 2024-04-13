@@ -133,7 +133,7 @@ class Controller:
         self.create_tables()
         self.reference_tables()
 
-    def insert_data(self, *to_insert):
+    def insert_data(self, to_insert):
         for item in to_insert:
             name = item.table_name
             table = self.__tables[name]

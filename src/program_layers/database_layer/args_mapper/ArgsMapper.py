@@ -20,6 +20,7 @@ class ArgsMapper:
             temp_param.append("=")
             temp_param.append(v)
             params.append(temp_param)
+        return params
 
     @staticmethod
     def get_id_param(parsed_req):

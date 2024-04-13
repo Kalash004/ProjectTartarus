@@ -8,11 +8,11 @@ from src.program_layers.api_layer.main_api_server.Reader import Reader
 
 
 class ReaderFactory(IFactory):
-    def __init__(self, connection: socket.socket, address: str, conn_manager, exception_handler):
+    def __init__(self, connection: socket.socket, address: str, conn_manager):
         self.connection = connection
         self.address = address
         self.conn_manager = conn_manager
-        self.exception_handler = exception_handler
+        self.exception_handler = conn_manager.exception_handler
         self.parser: IParse = ParserFactory().produce()
 
     def produce(self):

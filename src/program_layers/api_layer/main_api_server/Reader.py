@@ -24,20 +24,19 @@ class Reader:
     def run(self):
         with self.CONNECTION as conn:
             while not self.stop_flag:
-                try:
+                # try:
                     self.__main_loop(conn)
-                except ClientBaseException as ce:
-                    # TODO: Fix exception handling - not many different exceptions, just one
-                    self.exception_handler.handle_client_exception(ce, self.connection_manager)
-                except ServiceBaseException as se:
-                    ExceptionHandler().handle_exceptions(se)
-                    conn.close()
-                except Exception as e:
-                    ExceptionHandler().handle_exceptions(e)
-                    conn.close()
-                except BaseException as be:
-                    ExceptionHandler().handle_exceptions(be)
-                    conn.close()
+                # except ClientBaseException as ce:
+                #     TODO: Fix exception handling - not many different exceptions, just one
+                    # self.exception_handler.handle_client_exception(ce, self.connection_manager)
+                # except ServiceBaseException as se:
+                #     ExceptionHandler().handle_exceptions(se)
+                #     conn.close()
+                # except Exception as e:
+                #     ExceptionHandler().handle_exceptions(e)
+                # except BaseException as be:
+                #     ExceptionHandler().handle_exceptions(be)
+                #     conn.close()
             conn.close()
             return
 

@@ -7,4 +7,4 @@ if __name__ == "__main__":
         'NAME': 'Anton'
     }, data=None)
     argsm = ArgsMapper()
-    argsm.map(req)
+    print(argsm.map(req))

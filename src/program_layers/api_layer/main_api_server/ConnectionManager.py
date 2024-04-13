@@ -23,7 +23,6 @@ class ConnectionManager(IStopable):
 
     def start(self):
         self.__start_threads()
-        self.__check_stop()
 
     def __create_threads(self):
         self.threads["watchdog"] = threading.Thread(target=self.conn_timeout_watchdog.worker)

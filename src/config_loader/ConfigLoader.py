@@ -59,7 +59,7 @@ class ApiLoader:
         return read_json_file(self.FILE_PATH, "api_server_address")[0]
 
     def get_connection_timeout_sec(self) -> int:
-        return read_json_file(self.FILE_PATH, "connection_life_sec")
+        return read_json_file(self.FILE_PATH, "connection_life_sec")[0]
 
 
 class RuleConfLoader:
@@ -75,7 +75,7 @@ class ConfigLoader(metaclass=SingletonMeta):
 
     def __init__(self):
         self.__AUTHENTIFICATOR_CONF_FILE_PATH = os.path.join(os.path.dirname(__file__), "../../config/auth_conf.json")
-        self.__DATABASE_CONF_FILE_PATH = os.path.join(os.path.dirname(__file__), "../../config/database_connection_config.json.json")
+        self.__DATABASE_CONF_FILE_PATH = os.path.join(os.path.dirname(__file__), "../../config/database_connection_config.json")
         self.__API_SERVER_FILE_PATH = os.path.join(os.path.dirname(__file__), "../../config/api_server.json")
         self.__RULES_LOADER_CONFIG = os.path.join(os.path.dirname(__file__), "../../config/rules_to_load.json")
 

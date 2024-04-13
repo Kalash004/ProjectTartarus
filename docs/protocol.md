@@ -66,3 +66,6 @@ APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA=[{user_id:1,name:Anton},{user_i
 ## Supported Parameter Opperators
 
 '='
+
+testing
+APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:3,name:Notna,surename:Kalashnikov,password:test}]
