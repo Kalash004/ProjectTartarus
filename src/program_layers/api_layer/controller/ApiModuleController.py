@@ -1,2 +1,2 @@
-class ApiModuleController:
-    pass
+class ApiLayerMain:
+    """Starter point for api layer"""

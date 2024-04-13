@@ -2,6 +2,7 @@ import socket
 import threading
 
 from src.__models_for_all_layers.interfaces.IStopable import IStopable
+from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.api_layer_factories.AnswererFactory import \
     AnswererFactory
 from src.program_layers.api_layer.api_layer_factories.ReaderFactory import ReaderFactory
@@ -14,6 +15,7 @@ class ConnectionManager(IStopable):
     def __init__(self, connection: socket.socket, address: str):
         self.connection: socket.socket = connection
         self.address = address
+        self.exception_handler = ExceptionHandler()
         self.reader = ReaderFactory(connection, address, self).produce()
         self.answerer = AnswererFactory(connection, address).produce()
         self.threads: dict[str:threading.Thread] = {}
@@ -38,11 +40,6 @@ class ConnectionManager(IStopable):
         self.reader.stop()
         self.answerer.stop()
         # self._stop_threads()
-
-    def __check_stop(self):
-        while not self.stop:
-            pass
-        # TODO: Finish
 
     def _stop_threads(self):
         for t in self.threads.values():

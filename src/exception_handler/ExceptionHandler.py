@@ -9,10 +9,9 @@ from src.exception_handler.exception_handle_instructions.client_except_handlers.
     ApiExceptionHandler
 from src.exception_handler.exception_handle_instructions.client_except_handlers.UnknownClientExceptionHandler import \
     UnknownClientExceptionHandler
-from src.__utils.SingletonMeta import SingletonMeta
 
 
-class ExceptionHandler(IHandleException, IHandleClientException, metaclass=SingletonMeta):
+class ExceptionHandler(IHandleException, IHandleClientException):
 
     def __init__(self):
         self._client_exception_instructions: dict[BaseException:IHandleClientException] = {
@@ -23,6 +22,8 @@ class ExceptionHandler(IHandleException, IHandleClientException, metaclass=Singl
             UnknownException: UnknownExceptionHandler()
         }
 
+    # def handle_exceptions(self, exception):
+    #     if
     def handle_exceptions(self, exception: BaseException):
         if type(exception) not in self._exception_instructions:
             self._exception_instructions[UnknownException].handle_exceptions(exception)

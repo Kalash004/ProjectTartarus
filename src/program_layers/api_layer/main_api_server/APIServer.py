@@ -1,10 +1,11 @@
 import socket
 
+from src.__models_for_all_layers.exceptions.BaseExceptions.ServiceBaseException import ServiceBaseException
+from src.__utils.SingletonMeta import SingletonMeta
 from src.config_loader.ConfigLoader import ConfigLoader
 from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.api_layer_factories.ConnectionManagerFactory import \
     ConnectionManagerFactory
-from src.__utils.SingletonMeta import SingletonMeta
 
 
 class APIServer(metaclass=SingletonMeta):
@@ -30,7 +31,7 @@ class APIServer(metaclass=SingletonMeta):
                     connection_manager = ConnectionManagerFactory(connection, addres).produce()
                     connection_manager.start()
                     self.connections.append(connection_manager)
-        except Exception as e:
+        except ServiceBaseException as e:
             ExceptionHandler().handle_exceptions(e)
 
     def stop(self):

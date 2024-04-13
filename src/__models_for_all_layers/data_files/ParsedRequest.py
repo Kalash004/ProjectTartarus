@@ -5,5 +5,5 @@ import dataclasses
 class ParsedRequest:
     event: str
     table: str
-    parameters: str
+    parameters: str | None
     data: [dict]

@@ -10,8 +10,6 @@ class single(metaclass=SingletonMeta):
 
 
 if __name__ == "__main__":
-    s1 = single(msg="H1 its 1")
-    s1.hi()
-    s2 = single(msg="Lmao")  # type:ignore
-    s2.hi()
-    s1.hi()
+    single(msg="H1 its 1").hi()
+    single.remake(msg="Lmao").hi()
+    single().hi()

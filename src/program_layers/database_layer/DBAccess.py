@@ -1,5 +1,5 @@
-from src.program_layers.presistence_layer.tables.tables import all_tables
-from src.program_layers.presistence_layer.SimpleSQL import App as Orm
+from src.program_layers.database_layer.tables.tables import all_tables
+from src.program_layers.database_layer.SimpleSQL import App as Orm
 
 class DBAccess():
     _instance = None

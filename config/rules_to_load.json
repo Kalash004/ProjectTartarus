@@ -1,5 +1,7 @@
 {
   "rules": [
-    "TestRule"
+    "Rule_NameCantBeTony",
+    "Rule_NameCantBeDona",
+    "Rule_NameCantBeAnton"
   ]
 }

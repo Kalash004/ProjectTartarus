@@ -4,7 +4,7 @@ from src.program_layers.business_layer.__models.Interfaces.IPlugin import IPlugi
 from src.program_layers.business_layer.__models.Interfaces.IRule import IRule
 
 
-class Rule_NameCantBeTony(IRule, IPlugin):
+class Rule_NameCantBeDona(IRule, IPlugin):
     """Testing rule - doenst allow creating users with name Tony"""
 
     def __init__(self):
@@ -16,5 +16,5 @@ class Rule_NameCantBeTony(IRule, IPlugin):
 
     def use(self, request: ParsedRequest):
         for data in request.data:
-            if data["name"].lower() == "tony":
-                raise BusinessRuleNotPassedException(f"Request had name Tony in data {request.data}")
+            if data["name"].lower() == "dona":
+                raise BusinessRuleNotPassedException(f"Request had name Dona in data {request.data}")

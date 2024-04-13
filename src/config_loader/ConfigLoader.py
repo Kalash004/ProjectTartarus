@@ -42,7 +42,6 @@ class ConfigLoader(metaclass=SingletonMeta):
     @staticmethod
     def read_json_file(path: str, var_name: str) -> [int | str]:
         import json
-        # TODO: check if path is json file
         with open(path, "r") as file:
             response = []
             data = json.load(file)

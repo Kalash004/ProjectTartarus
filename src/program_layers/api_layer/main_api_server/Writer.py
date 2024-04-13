@@ -16,7 +16,6 @@ class Answerer:
         self.stop_flag = False
 
     def run(self):
-        # TODO: add life time checker
         with self.connection as conn:
             while not self.stop_flag:
                 self.__main_loop()
@@ -24,7 +23,6 @@ class Answerer:
             return
 
     def __main_loop(self):
-        # TODO: main loop, check if needs to send message, if so send message
         if self.message is None:
             return
         self._send_and_clean()

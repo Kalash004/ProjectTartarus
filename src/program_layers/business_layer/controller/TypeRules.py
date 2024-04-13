@@ -12,7 +12,7 @@ class TypeRules:
             "update": []
         }
 
-    def add_rule(self, event_type: str, object: IRule):
+    def add_rule(self, event_type: str, obj: IRule):
         if event_type not in self.types_dict.keys():
             raise UnknownClientException(f"Table not in type dict")
-        self.types_dict[event_type].append(object)
+        self.types_dict[event_type].append(obj)

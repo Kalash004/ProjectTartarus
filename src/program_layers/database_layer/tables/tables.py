@@ -1,7 +1,4 @@
-from src.program_layers.presistence_layer.SimpleSQL.package_src import Base, Param, Types, Constraints, Reference
-
-
-# TODO: Create a method which will create after init settings for acrus
+from src.program_layers.database_layer.SimpleSQL.package_src import Base, Param, Types, Constraints, Reference
 
 
 class admin_users(Base):
@@ -51,4 +48,3 @@ class enterences_to_office(Base):
 
 class all_tables:
     all_talbes = [admin_users, office_users, days, system_messages, system_log_ins, enterences_to_office]
-
