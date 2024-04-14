@@ -33,6 +33,7 @@ class Answerer:
 
     def _send_and_clean(self):
         if not socket_open(self.connection):
+            self.stop_flag = True
             return
         self.connection.send(self.message)
         self.message = None

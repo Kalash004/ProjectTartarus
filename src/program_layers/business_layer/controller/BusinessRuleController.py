@@ -9,6 +9,7 @@ from src.program_layers.business_layer.factory.RulesLoaderFactory import RulesLo
 class BusinessRuleController(metaclass=SingletonMeta):
 
     def __init__(self):
+        # TODO: dont init this everytime
         self.rules: dict[str:dict[str:[IRule]]] = {
             "admin_users": TypeRules(),
             "office_users": TypeRules(),
@@ -22,6 +23,7 @@ class BusinessRuleController(metaclass=SingletonMeta):
         # dict[table:dict[action type:Rule]]
 
     def execute(self, parsed_request: ParsedRequest):
+        # TODO: Handle users exception
         rules = self.rules[parsed_request.table.lower()].types_dict[parsed_request.event.lower()]
         for rule in rules:
             rule.use(request=parsed_request)

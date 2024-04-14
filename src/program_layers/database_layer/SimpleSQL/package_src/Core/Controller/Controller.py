@@ -244,7 +244,7 @@ class Controller:
     def delete_data_id(self, obj, obj_id):
         table_name = obj.table_name
         pk = self.__find_primary_key_name(obj)
-        query = self.__query_obj[table_name].DeleteCommand
+        query = self.__query_obj[table_name].delete
         try:
             resp = self.connector.query(
                 {

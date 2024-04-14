@@ -4,15 +4,20 @@ Protocol for communication with core database app
 
 # How it works
 
-* Step 1: Send message as [structure](#structure) below
-* Step 2: Sends response (Error message/ Done/ Data objects requested)
+* Step 1: [Send request](#send-request) as [structure](#request-structure) below
+* Step 2: Obtain response (Error message/ Done/ Data objects requested)
 
-## Structure
+## Send request
 
-* API KEY; <br>
-* REQUEST TYPE; <br>
-* TABLE; <br>
-* (DATA) <br>
+This section is about your request for the application
+
+### Request structure
+
+* API KEY; - `must have` <br>
+* REQUEST TYPE; - `must have`<br>
+* TABLE - `must have`; <br>
+* DATA <br>
+* PARAMETERS <br>
 
 ### API KEY
 
@@ -21,21 +26,33 @@ Given from administrator. Its needed for verification.
 ### REQUEST TYPE
 
 * GET - returns back data depending on parameters
-* POST - inserts data into the database depending on the parameters
-* DELETE - deletes data from the database depending on the parameters
-* UPDATE - updates data in the database depending on parameters
+* POST - inserts data into the database depending on the data **Must have DATA in request**
+* DELETE - deletes data from the database depending on the data **Must have DATA in the request**
+* UPDATE - updates data in the database depending on the data **Must have DATA in request**
 
-## Parameters
+### Parameters for each request type
 
-### GET
+#### _GET_
 
-* table.attribute_name=value <br>
-  **Example**
-  USERS.NAME=ANTON <br>
+* attribute_name=value <br>
+  **Example**:
+  NAME=ANTON <br>
 
-<u>**No parameters** return all the data from the database</u>
+<u>**If you dont add any parameters** returns all the data from the database</u>
 
-### POST
+#### _POST_
+
+--
+
+#### _DELETE_
+
+--
+
+#### _UPDATE_
+
+--
+
+### DATA
 
 * Data in JSON format
 
@@ -56,23 +73,20 @@ Given from administrator. Its needed for verification.
 
 ### Get an object from the table
 
-APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON,TOP=1)
+APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON)
 APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(ID=1)
 
 ### Insert and object to the table
 
-APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA=[{user_id:1,name:Anton},{user_id:2,name:Notna}]
+APIKEY=apitestkey1;EVENT=POST;TABLE=USERS;DATA=[{user_id:1,name:Anton},{user_id:2,name:Notna}]
 
 ## Supported Parameter Opperators
 
 '='
 
-testing
-APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:none,name:Notna,surename:Kalashnikov,password:test}]
-
 # Response
 
-STATUS=`value`;DATA=`[{user_id:1,name:Anton},{user_id:2,name:Anton}]`
+STATUS=`value`;DATA=`[{'table':'users','user_id':1,'name':'Anton'},{'user_id':2,'name':'Anton'}]`;
 
 ## Possible status
 
@@ -83,3 +97,18 @@ Client exceptions - 23
 Service exceptions - 24
 Unknown exception - 22
 ```
+
+
+# testing
+post <br>
+APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:none,name:Notna,surename:Kalashnikov,password:test}]
+
+get <br>
+no params <br>
+APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;
+APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton)
+
+
+update
+APIKEY=apitestkey1;EVENT=UPDATE;TABLE=admin_users;DATA=[{admin_id:1,name:Anton,surename:Kalashnikov,password:newpas}]
+

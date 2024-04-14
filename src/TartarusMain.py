@@ -16,6 +16,7 @@ def program_exception_restart(func):
                 return
             except Exception as e:
                 print(e)
+                print("Restarting")
                 start = True
 
         while start:
@@ -28,7 +29,7 @@ def program_exception_restart(func):
 def main():
     """Program"""
     # start the database
-    db_controller = DatabaseController()
+    db_controller = DatabaseController(initialize=True)
     # start the server
     api_layer_controller = ApiLayerMain()
     api_layer_controller.start()

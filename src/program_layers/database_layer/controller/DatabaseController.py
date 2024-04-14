@@ -12,14 +12,15 @@ from src.program_layers.database_layer.commands.DatabaseManipulationCommands imp
 class DatabaseController(metaclass=SingletonMeta):
     """This allows clients control the database using parsed requests"""
 
-    def __init__(self):
-        self.access = DbAccess(initialize=True)
-        self.__events_mapper = {
-            "post": self.post,
-            "get": self.get,
-            "delete": self.delete,
-            "update": self.update
-        }
+    def __init__(self, initialize=False):
+        if initialize:
+            self.access = DbAccess(initialize=True)
+            self.__events_mapper = {
+                "post": self.post,
+                "get": self.get,
+                "delete": self.delete,
+                "update": self.update
+            }
 
     def execute_request(self, request: ParsedRequest, connection_loop):
         event = request.event.lower()

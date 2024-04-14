@@ -56,6 +56,6 @@ class DbAccess(metaclass=SingletonMeta):
         return resp
 
     def update(self, parsed_request: ParsedRequest):
-        obj = self.mapper.request_to_obj(parsed_request)
+        obj = self.mapper.request_to_obj(parsed_request)[0]
         resp = self.orm.update_data(obj)
         return resp

@@ -9,7 +9,7 @@ class ResponseBuilder(metaclass=SingletonMeta):
     def build_succes(self, response) -> bytes:
         success = "success"
         resp = f"STATUS:{self.codes[success]};"
-        if response is not None:
-            data_repr = f"DATA:{response}"
-            resp.join(data_repr)
+        if response != (None or [[]] or []):
+            data_repr = f"DATA:{str(response)}"
+            resp += data_repr
         return resp.encode()

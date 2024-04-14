@@ -11,7 +11,10 @@ class RequestParser(IParse):
         self.parse_chain = parse_chain
 
     def parse(self, data: str) -> ParsedRequest:
+        data = data.rstrip()
+        data = data.lstrip()
         data = data.rstrip("/r/n")
+        data = data.rstrip(";")
         dictionary = self.split_to_key_value(self.split_to_lines(data))
         for parse_class in self.parse_chain:
             dictionary = parse_class.parse(dictionary)

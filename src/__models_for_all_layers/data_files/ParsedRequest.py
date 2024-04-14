@@ -9,6 +9,6 @@ class ParsedRequest:
     data: [dict]
 
     def get_params_id(self):
-        if "ID" not in self.parameters.keys():
+        if "id" not in self.parameters.keys():
             return None
-        return self.parameters["ID"]
+        return self.parameters["id"]
