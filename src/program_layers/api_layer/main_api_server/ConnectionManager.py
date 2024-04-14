@@ -17,7 +17,7 @@ class ConnectionManager(IStopable):
         self.address = address
         self.exception_handler = ExceptionHandler()
         self.reader = ReaderFactory(connection, address, self).produce()
-        self.answerer = AnswererFactory(connection, address).produce()
+        self.answerer = AnswererFactory(connection, address, self).produce()
         self.threads: dict[str:threading.Thread] = {}
         self.conn_timeout_watchdog = WatchdogFactory(self).produce()
 
@@ -43,3 +43,6 @@ class ConnectionManager(IStopable):
     def _stop_threads(self):
         for t in self.threads.values():
             t.join()
+
+    def kill_connection(self):
+        self.connection.close()

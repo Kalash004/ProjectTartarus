@@ -41,3 +41,8 @@ class RequestToDbObjMapper:
             raise Exception
         obj = self.__map[table]
         return obj
+
+    def get_obj_type_from_name(self, name) -> Base:
+        if name not in self.__map.keys():
+            return
+        return self.__map[name]

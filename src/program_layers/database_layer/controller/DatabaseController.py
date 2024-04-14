@@ -28,7 +28,6 @@ class DatabaseController(metaclass=SingletonMeta):
             # TODO: Better exception
             raise Exception
         response = self.__events_mapper[event](request)
-        print(response)
         # TODO: send response
         connection_loop.answerer.message = ResponseBuilder().build_succes(response)
 

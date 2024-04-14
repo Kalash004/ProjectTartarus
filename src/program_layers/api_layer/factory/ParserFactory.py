@@ -3,6 +3,9 @@ from src.program_layers.api_layer.__models.interfaces.IChainParse import IChainP
 from src.program_layers.api_layer.__models.interfaces.IParse import IParse
 from src.program_layers.api_layer.parse_rules.Parse_APIKeyCheck import \
     Parse_APIKeyCheck
+from src.program_layers.api_layer.parse_rules.Parse_CheckDataAttributes import Parse_CheckDataAttributes
+from src.program_layers.api_layer.parse_rules.Parse_CheckEventExists import Parse_CheckEventExists
+from src.program_layers.api_layer.parse_rules.Parse_CheckTableExists import Parse_CheckTableExists
 from src.program_layers.api_layer.parse_rules.Parse_Data import Parse_Data
 from src.program_layers.api_layer.parse_rules.Parse_Parameters import \
     Parse_Parameters
@@ -16,7 +19,8 @@ from src.program_layers.api_layer.request_parser.RequestParser import RequestPar
 
 class ParserFactory(IFactory):
     prasing_chain: [IChainParse] = [Parse_SetMetaDataLower(), Parse_APIKeyCheck(), Parse_SetNoParamsToNone(), Parse_SetNoDataToNone(),
-                                    Parse_Parameters(), Parse_Data()]
+                                    Parse_Parameters(), Parse_Data(), Parse_CheckTableExists(), Parse_CheckEventExists(),
+                                    Parse_CheckDataAttributes()]
 
     def produce(self):
         return self._create_parser()

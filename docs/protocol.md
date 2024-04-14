@@ -101,14 +101,20 @@ Unknown exception - 22
 
 # testing
 post <br>
-APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:none,name:Notna,surename:Kalashnikov,password:test}]
+APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:none,name:Denis,surename:Kalashnikov,password:test}] `works`
 
 get <br>
 no params <br>
-APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;
-APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton)
+APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users; `works`
+
+with params <br>
+APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton) `works`
 
 
 update
-APIKEY=apitestkey1;EVENT=UPDATE;TABLE=admin_users;DATA=[{admin_id:1,name:Anton,surename:Kalashnikov,password:newpas}]
+APIKEY=apitestkey1;EVENT=UPDATE;TABLE=admin_users;DATA=[{admin_id:5,name:Someone,surename:Kalashnikov,password:newpas}]       `Works`
 
+
+delete 
+
+APIKEY=apitestkey1;EVENT=DELETE;TABLE=admin_users;PARAMETERS=(ID=8)  `Works`

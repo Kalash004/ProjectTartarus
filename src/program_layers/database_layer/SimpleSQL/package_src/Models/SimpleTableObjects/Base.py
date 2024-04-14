@@ -28,7 +28,7 @@ class Base:
                 setattr(self, attribute, value)
             else:
                 raise Exception(f"Attribute {attribute} is not a part of this object {type(self)}")
-        if self.__get_count_of_atrs(self) > len(kwargs):
+        if self.get_count_of_atrs(self) > len(kwargs):
             raise Exception(f"The amount of **kwargs is not same as the atributes defined in the table")
 
     # TODO: if count of inputs not same as atributes of class raise error
@@ -38,8 +38,7 @@ class Base:
             raise Exception(f"{type(self)} : (table_name = {self.table_name}) cant be None. Please set the name of "
                             f"the table")
 
-    @staticmethod
-    def __get_count_of_atrs(pre_struct):
+    def get_count_of_atrs(self, pre_struct):
         struct = []
         for i in inspect.getmembers(pre_struct):
             if i[0].startswith('_'):

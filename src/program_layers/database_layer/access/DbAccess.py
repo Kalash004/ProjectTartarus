@@ -7,10 +7,12 @@ from src.program_layers.database_layer.tables.tables import all_tables
 
 
 class DbAccess(metaclass=SingletonMeta):
+    """This works with ORM"""
+
     def __init__(self, initialize=False):
-        self.orm = OrmFactory().produce()
-        self.mapper = RequestToDbObjMapper()
         if initialize:
+            self.orm = OrmFactory().produce()
+            self.mapper = RequestToDbObjMapper()
             self.start_orm()
 
     def start_orm(self):
@@ -41,7 +43,7 @@ class DbAccess(metaclass=SingletonMeta):
             # TODO: Kills performence
             # TODO: Exception might happen if same id already exists
             if obj.find_primary_key_val().lower() == "none":
-                resp:Base = self.get_last_index(parsed_request=parsed_req)
+                resp: Base = self.get_last_index(parsed_request=parsed_req)
                 last_id = resp.find_primary_key_val()
                 if last_id > new_id:
                     new_id = last_id

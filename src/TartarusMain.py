@@ -1,3 +1,4 @@
+from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.controller.ApiLayerMain import ApiLayerMain
 from src.program_layers.database_layer.controller.DatabaseController import DatabaseController
 
@@ -28,6 +29,8 @@ def program_exception_restart(func):
 @program_exception_restart
 def main():
     """Program"""
+    # initialize exception handler
+    ExceptionHandler(initialize=True)
     # start the database
     db_controller = DatabaseController(initialize=True)
     # start the server

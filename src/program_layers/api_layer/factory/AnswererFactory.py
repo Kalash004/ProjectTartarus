@@ -5,9 +5,10 @@ from src.program_layers.api_layer.main_api_server.Writer import Answerer
 
 
 class AnswererFactory(IFactory):
-    def __init__(self, connection: socket.socket, address: str):
+    def __init__(self, connection: socket.socket, address: str, conn_manager):
         self.conn = connection
         self.adr = address
+        self.con_manager = conn_manager
 
     def produce(self):
-        return Answerer(connection=self.conn, adress=self.adr)
+        return Answerer(connection=self.conn, adress=self.adr, connection_manager=self.con_manager)

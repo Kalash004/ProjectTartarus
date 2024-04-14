@@ -1,8 +1,6 @@
 import socket
 import threading
 
-from src.__models_for_all_layers.exceptions.BaseExceptions.ClientBaseException import ClientBaseException
-from src.__models_for_all_layers.exceptions.BaseExceptions.ServiceBaseException import ServiceBaseException
 from src.exception_handler.ExceptionHandler import ExceptionHandler
 from src.program_layers.api_layer.__models.interfaces.IParse import IParse
 from src.program_layers.api_layer.executor.Executor import Executor
@@ -24,19 +22,10 @@ class Reader:
     def run(self):
         with self.CONNECTION as conn:
             while not self.stop_flag:
-                # try:
+                try:
                     self.__main_loop(conn)
-                # except ClientBaseException as ce:
-                #     TODO: Fix exception handling - not many different exceptions, just one
-                    # self.exception_handler.handle_client_exception(ce, self.connection_manager)
-                # except ServiceBaseException as se:
-                #     ExceptionHandler().handle_exceptions(se)
-                #     conn.close()
-                # except Exception as e:
-                #     ExceptionHandler().handle_exceptions(e)
-                # except BaseException as be:
-                #     ExceptionHandler().handle_exceptions(be)
-                #     conn.close()
+                except BaseException as e:
+                    ExceptionHandler().handle_exception_inform_client(e, self.connection_manager)
             conn.close()
             return
 

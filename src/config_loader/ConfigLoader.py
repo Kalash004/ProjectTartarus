@@ -61,6 +61,9 @@ class ApiLoader:
     def get_connection_timeout_sec(self) -> int:
         return read_json_file(self.FILE_PATH, "connection_life_sec")[0]
 
+    def get_max_connections(self):
+        return read_json_file(self.FILE_PATH, "max_connections_allowed")[0]
+
 
 class RuleConfLoader:
     def __init__(self, path):

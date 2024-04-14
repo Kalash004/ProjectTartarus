@@ -10,5 +10,5 @@ class ParsedRequest:
 
     def get_params_id(self):
         if "id" not in self.parameters.keys():
-            return None
+            raise Exception("id not in params of the request")
         return self.parameters["id"]

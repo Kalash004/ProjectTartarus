@@ -46,21 +46,16 @@ class Controller:
 
     def start(self):
         # check if table users creates
-        try:
-            # Build queries
-            if self.config is None:
-                raise Exception("Database config was not given")
-            self.connector = Connector(db_config=self.config)
-            self.__query_obj = self.build_queries()
-            # Check if database exists
-            if not self.database_exists():
-                self.__create_database()
-            self.use_database()
-            self.starter_dml()
-
-        except Exception as err:
-            raise err
-            # TODO: Better exception cases
+        # Build queries
+        if self.config is None:
+            raise Exception("Database config was not given")
+        self.connector = Connector(db_config=self.config)
+        self.__query_obj = self.build_queries()
+        # Check if database exists
+        if not self.database_exists():
+            self.__create_database()
+        self.use_database()
+        self.starter_dml()
 
     def build_queries(self):
         builder = Builder()

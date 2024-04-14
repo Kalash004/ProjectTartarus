@@ -2,7 +2,6 @@ from src.__models_for_all_layers.interfaces.IHandleException import IHandleExcep
 
 
 class UnknownExceptionHandler(IHandleException):
+    # TODO: Make better
     def handle_exceptions(self, exception: BaseException):
-        # TODO: Add some kind of logging
-        # raise NotImplemented
-        print(f"Called exception {exception}")
+        pass

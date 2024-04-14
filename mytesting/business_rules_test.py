@@ -10,4 +10,4 @@ if __name__ == "__main__":
         'name': 'Notna'
     }])
     brc = BusinessRuleController()
-    brc.execute(req, None)
+    brc.execute(req)

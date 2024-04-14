@@ -13,7 +13,7 @@ class APIServer(metaclass=SingletonMeta):
     creates a ConnectionManager object which then manages given connection"""
     CONFIG_LOADER_SINGLETON = ConfigLoader()
 
-    def __init__(self, adress: str, port: int):
+    def __init__(self, adress: str, port: int, maximum_connections: int):
         # self.HTTP_REQ_REGEX: re.Pattern = re.compile(r"^([A-Z]+)\s*(.*)(\s+HTTP/\\d\\.\\d)$")
         self.PORT: int = port
         self.ADRESS: str = adress

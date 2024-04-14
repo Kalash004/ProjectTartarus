@@ -6,8 +6,14 @@ from src.program_layers.api_layer.main_api_server.APIServer import APIServer
 
 class ApiServerFactory(IFactory, metaclass=SingletonMeta):
     def __init__(self):
-        self.port = ConfigLoader().api_conf_loader.get_port()
-        self.address = ConfigLoader().api_conf_loader.get_host()
+        try:
+            self.port = ConfigLoader().api_conf_loader.get_port()
+            self.address = ConfigLoader().api_conf_loader.get_host()
+            self.max_cons = ConfigLoader().api_conf_loader.get_max_connections()
+        except Exception as e:
+            # TODO: new handle
+            # Possible missing file exception
+            pass
 
     def produce(self):
-        return APIServer(port=self.port, adress=self.address)
+        return APIServer(port=self.port, adress=self.address, maximum_connections=self.max_cons)
