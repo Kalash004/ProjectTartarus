@@ -1,6 +1,7 @@
 from src.__models_for_all_layers.data_files.ParsedRequest import ParsedRequest
 from src.__utils.SingletonMeta import SingletonMeta
 from src.program_layers.database_layer.RequestToDbObjMapper import RequestToDbObjMapper
+from src.program_layers.database_layer.SimpleSQL.package_src import Base
 from src.program_layers.database_layer.factory.OrmFactory import OrmFactory
 from src.program_layers.database_layer.tables.tables import all_tables
 
@@ -32,8 +33,21 @@ class DbAccess(metaclass=SingletonMeta):
         return resp
 
     def insert(self, parsed_req):
-        obj = self.mapper.request_to_obj(parsed_req)
-        resp = self.orm.insert_data(obj)
+        objs: [Base] = self.mapper.request_to_obj(parsed_req)
+        obj: Base
+        new_id = 0
+        for obj in objs:
+            # check if obj has None id -> request for last inserted id, set objs id +1
+            # TODO: Kills performence
+            # TODO: Exception might happen if same id already exists
+            if obj.find_primary_key_val().lower() == "none":
+                resp:Base = self.get_last_index(parsed_request=parsed_req)
+                last_id = resp.find_primary_key_val()
+                if last_id > new_id:
+                    new_id = last_id
+                new_id += 1
+                obj.set_primary_key_val(new_id)
+        resp = self.orm.insert_data(objs)
         return resp
 
     def delete(self, parsed_request: ParsedRequest, obj_id):

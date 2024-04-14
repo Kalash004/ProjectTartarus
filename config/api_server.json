@@ -1,5 +1,6 @@
 {
   "api_server_running_port": 2004,
   "api_server_address": "127.0.0.1",
-  "connection_life_sec": 120
+  "connection_life_sec": 120,
+  "max_connections_allowed": 5
 }

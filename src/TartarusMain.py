@@ -4,7 +4,7 @@ from src.program_layers.database_layer.controller.DatabaseController import Data
 start = True
 
 
-def wraper(func):
+def program_exception_restart(func):
     def worker():
         global start
 
@@ -24,10 +24,12 @@ def wraper(func):
     return worker
 
 
-@wraper
+@program_exception_restart
 def main():
     """Program"""
+    # start the database
     db_controller = DatabaseController()
+    # start the server
     api_layer_controller = ApiLayerMain()
     api_layer_controller.start()
 

@@ -318,7 +318,7 @@ class Controller:
         if hold.__name__ == "type":
             hold = obj
         mapped_obj = hold(skip_setup=True)
-        mapped_obj.__map(resp)
+        mapped_obj.map(resp)
         return mapped_obj
 
     def __map_arrays_to_obj_array(self, obj, resp):

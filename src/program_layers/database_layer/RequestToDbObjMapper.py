@@ -22,7 +22,7 @@ class RequestToDbObjMapper:
 
     # TODO: Can be remade with func to dynamically map from tables.all_tables.all_tables ^
 
-    def request_to_obj(self, request: ParsedRequest) -> [Any]:
+    def request_to_obj(self, request: ParsedRequest) -> [Base]:
         objs = []
         table = request.table
         if table not in self.__map:
@@ -39,5 +39,5 @@ class RequestToDbObjMapper:
         if table not in self.__map:
             # TODO: Better exceptions
             raise Exception
-        obj: Base = self.__map[table]
+        obj = self.__map[table]
         return obj

@@ -1,4 +1,5 @@
 from src.__models_for_all_layers.data_files.ParsedRequest import ParsedRequest
+from src.__response_builder.ResponseBuilder import ResponseBuilder
 from src.__utils.SingletonMeta import SingletonMeta
 from src.program_layers.database_layer.access.DbAccess import DbAccess
 from src.program_layers.database_layer.commands.DatabaseManipulationCommands import DeleteCommand
@@ -20,13 +21,15 @@ class DatabaseController(metaclass=SingletonMeta):
             "update": self.update
         }
 
-    def execute_request(self, request: ParsedRequest, connection):
+    def execute_request(self, request: ParsedRequest, connection_loop):
         event = request.event.lower()
         if event not in self.__events_mapper.keys():
             # TODO: Better exception
             raise Exception
         response = self.__events_mapper[event](request)
+        print(response)
         # TODO: send response
+        connection_loop.answerer.message = ResponseBuilder().build_succes(response)
 
     def delete(self, request: ParsedRequest):
         return DeleteCommand(request).execute()

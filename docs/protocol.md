@@ -68,4 +68,18 @@ APIKEY=abcdapikey123;EVENT=POST;TABLE=USERS;DATA=[{user_id:1,name:Anton},{user_i
 '='
 
 testing
-APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:3,name:Notna,surename:Kalashnikov,password:test}]
+APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:none,name:Notna,surename:Kalashnikov,password:test}]
+
+# Response
+
+STATUS=`value`;DATA=`[{user_id:1,name:Anton},{user_id:2,name:Anton}]`
+
+## Possible status
+
+```
+Success - 1
+Exception starts - 2
+Client exceptions - 23
+Service exceptions - 24
+Unknown exception - 22
+```

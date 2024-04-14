@@ -81,6 +81,15 @@ class Base:
                 break
         return pk
 
+    def find_primary_key_val(self):
+        name = self.find_primary_key_name()
+        val = self.__dict__[name]
+        return val
+
+    def set_primary_key_val(self, num: int):
+        name = self.find_primary_key_name()
+        self.__dict__[name] = num
+
     @classmethod
     def get_structure(cls):
         structure = {}
