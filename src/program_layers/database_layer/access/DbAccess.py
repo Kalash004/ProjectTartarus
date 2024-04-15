@@ -31,20 +31,21 @@ class DbAccess(metaclass=SingletonMeta):
 
     def get_last_index(self, parsed_request: ParsedRequest):
         obj = self.mapper.get_request_obj_type(parsed_request)
-        resp = self.orm.last_inserted_instance(obj)
-        return resp
+        resp: Base = self.orm.last_inserted_instance(obj)
+        if resp is None:
+            return -1
+        return resp.find_primary_key_val()
 
     def insert(self, parsed_req):
         objs: [Base] = self.mapper.request_to_obj(parsed_req)
         obj: Base
-        new_id = 0
+        new_id = -1
         for obj in objs:
             # check if obj has None id -> request for last inserted id, set objs id +1
             # TODO: Kills performence
             # TODO: Exception might happen if same id already exists
             if obj.find_primary_key_val().lower() == "none":
-                resp: Base = self.get_last_index(parsed_request=parsed_req)
-                last_id = resp.find_primary_key_val()
+                last_id = self.get_last_index(parsed_request=parsed_req)
                 if last_id > new_id:
                     new_id = last_id
                 new_id += 1

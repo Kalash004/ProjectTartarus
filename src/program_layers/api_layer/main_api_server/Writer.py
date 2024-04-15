@@ -22,7 +22,7 @@ class Answerer:
             while not self.stop_flag:
                 try:
                     self.__main_loop()
-                except BaseException as e:
+                except Exception as e:
                     ExceptionHandler().handle_exception_inform_client(e, self.connection_manager)
             conn.close()
             return

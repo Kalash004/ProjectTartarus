@@ -109,6 +109,8 @@ APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users; `works`
 
 with params <br>
 APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton) `works`
+APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton,ID=4)
+APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton,admin_id=4)
 
 
 update

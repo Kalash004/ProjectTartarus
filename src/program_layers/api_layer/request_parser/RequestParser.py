@@ -18,8 +18,11 @@ class RequestParser(IParse):
         dictionary = self.split_to_key_value(self.split_to_lines(data))
         for parse_class in self.parse_chain:
             dictionary = parse_class.parse(dictionary)
-        return ParsedRequest(dictionary[ProtocolEnum.EVENT.value], dictionary[ProtocolEnum.TABLE.value],
-                             dictionary[ProtocolEnum.PARAMS.value], dictionary[ProtocolEnum.DATA.value])
+        parsed = ParsedRequest(dictionary[ProtocolEnum.EVENT.value], dictionary[ProtocolEnum.TABLE.value],
+                               dictionary[ProtocolEnum.PARAMS.value], dictionary[ProtocolEnum.DATA.value])
+        # TODO: Print for testing
+        print(parsed)
+        return parsed
 
     def split_to_lines(self, data: str):
         return data.split(self.DELIMITER)

@@ -35,7 +35,6 @@ class ConnectionManager(IStopable):
             t.start()
 
     def stop(self):
-        print("Stopping")
         self.reader.stop()
         self.answerer.stop()
         # self._stop_threads()

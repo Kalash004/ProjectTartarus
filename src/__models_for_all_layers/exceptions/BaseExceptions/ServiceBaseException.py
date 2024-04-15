@@ -1,3 +1,3 @@
-class ServiceBaseException(BaseException):
+class ServiceBaseException(Exception):
     def __init__(self, msg):
         self.msg = msg

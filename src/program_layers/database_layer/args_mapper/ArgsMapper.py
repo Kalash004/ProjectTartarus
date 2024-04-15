@@ -9,10 +9,10 @@ class ArgsMapper:
     def map(self, parsed_req: ParsedRequest):
         params = []
         req_params = parsed_req.parameters
-        if "ID" in req_params.keys():
+        if "id" in req_params.keys():
             params.append(self.get_id_param(parsed_req))
         for k, v in req_params.items():
-            if k == "ID":
+            if k == "id":
                 continue
             self.check_attr_in_table(k, parsed_req)
             temp_param: list = []
@@ -29,13 +29,15 @@ class ArgsMapper:
         primary_key_name = obj.find_primary_key_name()
         result.append(primary_key_name)
         result.append("=")
-        result.append(parsed_req.parameters["ID"])
+        result.append(parsed_req.parameters["id"])
         return result
 
     @staticmethod
     def check_attr_in_table(key, parsed_req):
         obj = RequestToDbObjMapper().get_request_obj_type(parsed_req)
         structure = obj.get_structure()
+        if key.lower() == "id":
+            return
         if key.lower() not in structure.keys():
             # TODO: Better handling
-            raise Exception
+            raise Exception(f"{key.lower()} not in structure {structure.keys()}")

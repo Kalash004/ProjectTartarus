@@ -1,57 +1,12 @@
 
- 2024-04-14 19:19:41 - Exception happened : Format key=value was not met
- 2024-04-14 19:20:15 - Exception happened : Format key=value was not met
- 2024-04-14 19:20:57 - Exception happened : Format key=value was not met
- 2024-04-14 19:21:42 - Exception happened : Format key=value was not met
- 2024-04-14 19:22:48 - Exception happened : Format key=value was not met
- 2024-04-14 19:23:41 - Exception happened : Format key=value was not met
- 2024-04-14 19:25:01 - Exception happened : Format key=value was not met
- 2024-04-14 19:26:11 - Exception happened : Format key=value was not met
- 2024-04-14 19:27:57 - Exception happened : Format key=value was not met
- 2024-04-14 19:28:50 - Exception happened : Format key=value was not met
- 2024-04-14 19:29:16 - Exception happened : Format key=value was not met
- 2024-04-14 19:29:58 - Exception happened : Attribute count in request is not the same as attribute count in the table: 4
- 2024-04-14 19:32:47 - Exception happened : 'apikey'
- 2024-04-14 19:33:25 - Exception happened : 'data'
- 2024-04-14 19:35:55 - Exception happened : Attribute count in request is not the same as attribute count in the table: 4
- 2024-04-14 19:37:13 - Exception happened : 'NoneType' object is not subscriptable
- 2024-04-14 19:44:06 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
+ 2024-04-15 19:21:30 - Exception happened : 1062 (23000): Duplicate entry '1' for key 'admin_users.PRIMARY' | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\connection_cext.py", line 661, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Duplicate entry '1' for key 'admin_users.PRIMARY'
 
- 2024-04-14 19:44:25 - Exception happened : 'NoneType' object is not subscriptable | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 21, in parse
-    return ParsedRequest(dictionary[ProtocolEnum.EVENT.value], dictionary[ProtocolEnum.TABLE.value],
-                         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'NoneType' object is not subscriptable
+The above exception was the direct cause of the following exception:
 
- 2024-04-14 19:45:31 - Exception happened : 'NoneType' object is not subscriptable | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 21, in parse
-    return ParsedRequest(dictionary[ProtocolEnum.EVENT.value], dictionary[ProtocolEnum.TABLE.value],
-                         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'NoneType' object is not subscriptable
- 
- End |
- 2024-04-14 19:47:03 - Exception happened : 'Controller' object has no attribute '_Controller__query_obj' | traceback: Traceback (most recent call last):
+Traceback (most recent call last):
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
     self.__main_loop(conn)
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
@@ -63,161 +18,34 @@ TypeError: 'NoneType' object is not subscriptable
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
     response = self.__events_mapper[event](request)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 42, in update
-    return UpdateCommand(request).execute()
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 38, in post
+    return InsertCommand(request).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 75, in execute
-    return db.update(self.obj)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 51, in execute
+    return db.insert(self.obj)
            ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\access\DbAccess.py", line 66, in update
-    resp = self.orm.update_data(obj)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Controller\Controller.py", line 220, in update_data
-    query = self.__query_obj[table_name].update
-            ^^^^^^^^^^^^^^^^
-AttributeError: 'Controller' object has no attribute '_Controller__query_obj'
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\access\DbAccess.py", line 53, in insert
+    resp = self.orm.insert_data(objs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Controller\Controller.py", line 141, in insert_data
+    resp = self.connector.query({
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Connector\SimpleSQLConnector.py", line 55, in query
+    raise err
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Connector\SimpleSQLConnector.py", line 46, in query
+    cursor.execute(query, args)
+  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\cursor_cext.py", line 374, in execute
+    result = self._cnx.cmd_query(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 74, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\connection_cext.py", line 669, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1' for key 'admin_users.PRIMARY'
  
  End |
- 2024-04-14 19:48:42 - Exception happened : 'Controller' object has no attribute '_Controller__query_obj' | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
-    Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 42, in update
-    return UpdateCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 75, in execute
-    return db.update(self.obj)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\access\DbAccess.py", line 66, in update
-    resp = self.orm.update_data(obj)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Controller\Controller.py", line 220, in update_data
-    query = self.__query_obj[table_name].update
-            ^^^^^^^^^^^^^^^^
-AttributeError: 'Controller' object has no attribute '_Controller__query_obj'
- 
- End |
- 2024-04-14 20:03:16 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:03:46 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:04:05 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:04:35 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:04:47 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:05:58 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:06:18 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:07:05 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:08:42 - Exception happened : 'NoneType' object is not iterable | traceback: Traceback (most recent call last):
+ 2024-04-15 19:28:36 - Exception happened : Attribute in request doesnt exist in the table: 'user_id' | traceback: Traceback (most recent call last):
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
     self.__main_loop(conn)
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
@@ -226,122 +54,12 @@ src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnect
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 20, in parse
     dictionary = parse_class.parse(dictionary)
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\parse_rules\Parse_CheckDataAttributes.py", line 12, in parse
-    for in_data in data["data"]:
-TypeError: 'NoneType' object is not iterable
- 
- End |
- 2024-04-14 20:10:56 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:11:08 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
- 
- End |
- 2024-04-14 20:11:18 - Exception happened :  | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
-    Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 36, in delete
-    return DeleteCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 60, in __init__
-    raise Exception()
-Exception
- 
- End |
- 2024-04-14 20:14:07 - Exception happened : 'NoneType' object has no attribute 'keys' | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
-    Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 36, in delete
-    return DeleteCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 57, in __init__
-    self.obj_id = parsed_req.get_params_id()
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\__models_for_all_layers\data_files\ParsedRequest.py", line 12, in get_params_id
-    if "id" not in self.parameters.keys():
-                   ^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'keys'
- 
- End |
- 2024-04-14 20:15:19 - Exception happened : 'NoneType' object has no attribute 'keys' | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
-    Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 36, in delete
-    return DeleteCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 57, in __init__
-    self.obj_id = parsed_req.get_params_id()
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\__models_for_all_layers\data_files\ParsedRequest.py", line 12, in get_params_id
-    if "id" not in self.parameters.keys():
-                   ^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'keys'
- 
- End |
- 2024-04-14 20:16:10 - Exception happened : Attribute count in request is not the same as attribute count in the table: 4 | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 20, in parse
-    dictionary = parse_class.parse(dictionary)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\parse_rules\Parse_CheckDataAttributes.py", line 17, in parse
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\parse_rules\Parse_CheckDataAttributes.py", line 25, in parse
     raise BadConnectionProtocolException(
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Attribute count in request is not the same as attribute count in the table: 4
+src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Attribute in request doesnt exist in the table: 'user_id'
  
  End |
- 2024-04-14 20:17:28 - Exception happened : 'NoneType' object has no attribute 'keys' | traceback: Traceback (most recent call last):
+ 2024-04-15 19:41:48 - Exception happened : a not in structure dict_keys(['table_name', 'messages_id', 'text', 'f_days_id', 'f_admin_id']) | traceback: Traceback (most recent call last):
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
     self.__main_loop(conn)
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
@@ -353,77 +71,44 @@ src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnect
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
     response = self.__events_mapper[event](request)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 36, in delete
-    return DeleteCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 57, in __init__
-    self.obj_id = parsed_req.get_params_id()
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\__models_for_all_layers\data_files\ParsedRequest.py", line 12, in get_params_id
-    if "id" not in self.parameters.keys():
-                   ^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'keys'
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 46, in get
+    return SelectWhereCommand(request).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 26, in __init__
+    self.arg = ArgsMapper().map(parsed_req)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\args_mapper\ArgsMapper.py", line 17, in map
+    self.check_attr_in_table(k, parsed_req)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\args_mapper\ArgsMapper.py", line 43, in check_attr_in_table
+    raise Exception(f"{key.lower()} not in structure {structure.keys()}")
+Exception: a not in structure dict_keys(['table_name', 'messages_id', 'text', 'f_days_id', 'f_admin_id'])
  
  End |
- 2024-04-14 20:21:54 - Exception happened : 'NoneType' object is not subscriptable | traceback: Traceback (most recent call last):
+ 2024-04-15 20:32:59 - Exception happened : Request had name Anton in data [{'admin_id': 'none', 'name': 'Anton', 'surename': 'Kalashnikov', 'password': 'kal'}] | traceback: Traceback (most recent call last):
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
     self.__main_loop(conn)
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
     Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 36, in delete
-    return DeleteCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 57, in __init__
-    self.obj_id = parsed_req.get_params_id()
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\__models_for_all_layers\data_files\ParsedRequest.py", line 12, in get_params_id
-    if "id" not in self.parameters[0].keys():
-                   ~~~~~~~~~~~~~~~^^^
-TypeError: 'NoneType' object is not subscriptable
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 14, in execute
+    SendToBusinessLayerCommand(parsed_request=request).execute()
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\commands\SendToBusinessLayerCommand.py", line 13, in execute
+    BusinessRuleController().execute(self.request)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\controller\BusinessRuleController.py", line 29, in execute
+    rule.use(request=parsed_request)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\rules_loader\rules\Rule_NameCantBeAnton.py", line 21, in use
+    raise BusinessRuleNotPassedException(f"Request had name Anton in data {request.data}")
+src.__models_for_all_layers.exceptions.BusinessRuleNotPassedException.BusinessRuleNotPassedException: Request had name Anton in data [{'admin_id': 'none', 'name': 'Anton', 'surename': 'Kalashnikov', 'password': 'kal'}]
  
  End |
- 2024-04-14 20:22:56 - Exception happened : 0 | traceback: Traceback (most recent call last):
+ 2024-04-15 21:03:19 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
     self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
-    Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 36, in delete
-    return DeleteCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 57, in __init__
-    self.obj_id = parsed_req.get_params_id()
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\__models_for_all_layers\data_files\ParsedRequest.py", line 12, in get_params_id
-    if "id" not in self.parameters[0].keys():
-                   ~~~~~~~~~~~~~~~^^^
-KeyError: 0
- 
- End |
- 2024-04-14 20:28:35 - Exception happened : Format key=value was not met | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 18, in parse
-    dictionary = self.split_to_key_value(self.split_to_lines(data))
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 33, in split_to_key_value
-    raise BadConnectionProtocolException("Format key=value was not met")
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Format key=value was not met
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
  
  End |

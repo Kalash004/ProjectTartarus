@@ -289,7 +289,7 @@ class Controller:
         )[0]
         if len(resp) > 0:
             return self.__map_to_obj(instance, resp[0])
-        return []
+        return None
 
     def __find_primary_key_name(self, instance: Base):
         table_name = instance.table_name

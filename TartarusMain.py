@@ -26,7 +26,7 @@ def program_exception_restart(func):
     return worker
 
 
-@program_exception_restart
+# @program_exception_restart
 def main():
     """Program"""
     # initialize exception handler
