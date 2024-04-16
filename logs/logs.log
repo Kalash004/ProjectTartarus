@@ -1,90 +1,5 @@
 
- 2024-04-15 19:21:30 - Exception happened : 1062 (23000): Duplicate entry '1' for key 'admin_users.PRIMARY' | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\connection_cext.py", line 661, in cmd_query
-    self._cmysql.query(
-_mysql_connector.MySQLInterfaceError: Duplicate entry '1' for key 'admin_users.PRIMARY'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
-    Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 38, in post
-    return InsertCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 51, in execute
-    return db.insert(self.obj)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\access\DbAccess.py", line 53, in insert
-    resp = self.orm.insert_data(objs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Controller\Controller.py", line 141, in insert_data
-    resp = self.connector.query({
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Connector\SimpleSQLConnector.py", line 55, in query
-    raise err
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\SimpleSQL\package_src\Core\Connector\SimpleSQLConnector.py", line 46, in query
-    cursor.execute(query, args)
-  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\cursor_cext.py", line 374, in execute
-    result = self._cnx.cmd_query(
-             ^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 74, in wrapper
-    return method(cnx, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\connection_cext.py", line 669, in cmd_query
-    raise get_mysql_exception(
-mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1' for key 'admin_users.PRIMARY'
- 
- End |
- 2024-04-15 19:28:36 - Exception happened : Attribute in request doesnt exist in the table: 'user_id' | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in __main_loop
-    parsed_request = self.parser.parse(data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\request_parser\RequestParser.py", line 20, in parse
-    dictionary = parse_class.parse(dictionary)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\parse_rules\Parse_CheckDataAttributes.py", line 25, in parse
-    raise BadConnectionProtocolException(
-src.__models_for_all_layers.exceptions.BadConnectionProtocolException.BadConnectionProtocolException: Attribute in request doesnt exist in the table: 'user_id'
- 
- End |
- 2024-04-15 19:41:48 - Exception happened : a not in structure dict_keys(['table_name', 'messages_id', 'text', 'f_days_id', 'f_admin_id']) | traceback: Traceback (most recent call last):
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
-    self.__main_loop(conn)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
-    Executor().execute(parsed_request, self.connection_manager, self.lock)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
-    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
-    DatabaseController().execute_request(self.request, self.connection)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
-    response = self.__events_mapper[event](request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 46, in get
-    return SelectWhereCommand(request).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 26, in __init__
-    self.arg = ArgsMapper().map(parsed_req)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\args_mapper\ArgsMapper.py", line 17, in map
-    self.check_attr_in_table(k, parsed_req)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\args_mapper\ArgsMapper.py", line 43, in check_attr_in_table
-    raise Exception(f"{key.lower()} not in structure {structure.keys()}")
-Exception: a not in structure dict_keys(['table_name', 'messages_id', 'text', 'f_days_id', 'f_admin_id'])
- 
- End |
- 2024-04-15 20:32:59 - Exception happened : Request had name Anton in data [{'admin_id': 'none', 'name': 'Anton', 'surename': 'Kalashnikov', 'password': 'kal'}] | traceback: Traceback (most recent call last):
+ 2024-04-16 19:02:56 - Exception happened : Request had surname Kalashnikov in data [{'users_id': 'none', 'name': 'Anthony', 'surename': 'Kalashnikov', 'password': 'kal'}] | traceback: Traceback (most recent call last):
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
     self.__main_loop(conn)
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
@@ -95,12 +10,96 @@ Exception: a not in structure dict_keys(['table_name', 'messages_id', 'text', 'f
     BusinessRuleController().execute(self.request)
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\controller\BusinessRuleController.py", line 29, in execute
     rule.use(request=parsed_request)
-  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\rules_loader\rules\Rule_NameCantBeAnton.py", line 21, in use
-    raise BusinessRuleNotPassedException(f"Request had name Anton in data {request.data}")
-src.__models_for_all_layers.exceptions.BusinessRuleNotPassedException.BusinessRuleNotPassedException: Request had name Anton in data [{'admin_id': 'none', 'name': 'Anton', 'surename': 'Kalashnikov', 'password': 'kal'}]
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\rules_loader\rules\Rule_OfficeSurnameCantBeKalashnikov.py", line 20, in use
+    raise BusinessRuleNotPassedException(f"Request had surname Kalashnikov in data {request.data}")
+src.__models_for_all_layers.exceptions.BusinessRuleNotPassedException.BusinessRuleNotPassedException: Request had surname Kalashnikov in data [{'users_id': 'none', 'name': 'Anthony', 'surename': 'Kalashnikov', 'password': 'kal'}]
  
  End |
- 2024-04-15 21:03:19 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
+ 2024-04-16 19:30:37 - Exception happened : [WinError 10053] An established connection was aborted by the software in your host machine | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+ 
+ End |
+ 2024-04-16 19:31:55 - Exception happened : [WinError 10053] An established connection was aborted by the software in your host machine | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+ 
+ End |
+ 2024-04-16 19:31:55 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+ 
+ End |
+ 2024-04-16 19:33:08 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+ 
+ End |
+ 2024-04-16 19:33:08 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+ 
+ End |
+ 2024-04-16 19:33:09 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+ 
+ End |
+ 2024-04-16 19:35:35 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop
+    data = self.recieve_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 44, in recieve_data
+    data = self.CONNECTION.recv(1024)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+ 
+ End |
+ 2024-04-16 19:36:07 - Exception happened : [WinError 10054] An existing connection was forcibly closed by the remote host | traceback: Traceback (most recent call last):
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
     self.__main_loop(conn)
   File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 36, in __main_loop

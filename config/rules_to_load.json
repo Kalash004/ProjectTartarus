@@ -2,6 +2,7 @@
   "rules": [
     "Rule_NameCantBeTony",
     "Rule_NameCantBeDona",
-    "Rule_NameCantBeAnton"
+    "Rule_NameCantBeAnton",
+    "Rule_OfficeSurnameCantBeKalashnikov"
   ]
 }

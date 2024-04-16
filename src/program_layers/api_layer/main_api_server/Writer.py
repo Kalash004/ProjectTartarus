@@ -1,7 +1,9 @@
 import socket
+import traceback
 
 from src.__utils.socket_utils import socket_open
 from src.exception_handler.ExceptionHandler import ExceptionHandler
+from src.logger.MyLogger import MyLogger
 
 
 class Answerer:
@@ -48,4 +50,7 @@ class Answerer:
         msg = "\n\r" + message
         if not socket_open(self.connection):
             return
-        self.connection.send(msg.encode())
+        try:
+            self.connection.send(msg.encode())
+        except Exception as e:
+            MyLogger().log_exception(e, traceback.format_exc())
