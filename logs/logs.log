@@ -111,3 +111,44 @@ ConnectionResetError: [WinError 10054] An existing connection was forcibly close
 ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
  
  End |
+ 2024-04-16 22:07:18 - Exception happened : tony not in structure dict_keys(['table_name', 'admin_id', 'name', 'surename', 'password']) | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
+    Executor().execute(parsed_request, self.connection_manager, self.lock)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 15, in execute
+    SendParsedReqToDatabaseLayer(request, connection_loop).execute()
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\SendParsedReqToDatabaseLayer.py", line 14, in execute
+    DatabaseController().execute_request(self.request, self.connection)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 30, in execute_request
+    response = self.__events_mapper[event](request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\controller\DatabaseController.py", line 46, in get
+    return SelectWhereCommand(request).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\commands\DatabaseManipulationCommands.py", line 26, in __init__
+    self.arg = ArgsMapper().map(parsed_req)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\args_mapper\ArgsMapper.py", line 17, in map
+    self.check_attr_in_table(k, parsed_req)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\database_layer\args_mapper\ArgsMapper.py", line 43, in check_attr_in_table
+    raise Exception(f"{key.lower()} not in structure {structure.keys()}")
+Exception: tony not in structure dict_keys(['table_name', 'admin_id', 'name', 'surename', 'password'])
+ 
+ End |
+ 2024-04-16 22:07:33 - Exception happened : Request had surname Kalashnikov in data [{'users_id': 'none', 'name': 'Tony', 'surename': 'Kalashnikov', 'password': 'kal'}] | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 26, in run
+    self.__main_loop(conn)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 40, in __main_loop
+    Executor().execute(parsed_request, self.connection_manager, self.lock)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 14, in execute
+    SendToBusinessLayerCommand(parsed_request=request).execute()
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\commands\SendToBusinessLayerCommand.py", line 13, in execute
+    BusinessRuleController().execute(self.request)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\controller\BusinessRuleController.py", line 29, in execute
+    rule.use(request=parsed_request)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\rules_loader\rules\Rule_OfficeSurnameCantBeKalashnikov.py", line 20, in use
+    raise BusinessRuleNotPassedException(f"Request had surname Kalashnikov in data {request.data}")
+src.__models_for_all_layers.exceptions.BusinessRuleNotPassedException.BusinessRuleNotPassedException: Request had surname Kalashnikov in data [{'users_id': 'none', 'name': 'Tony', 'surename': 'Kalashnikov', 'password': 'kal'}]
+ 
+ End |
