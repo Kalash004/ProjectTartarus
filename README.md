@@ -17,7 +17,7 @@ instead, users can utilize a specialized API format and transmit data through so
 * Control using api
 * Exception handling
 * Business rules control
-* Multifunctionality
+* Multiprocessing
 
 ## Description
 
@@ -50,6 +50,7 @@ Current vesrion: 0.6.5
 * [Dependencies](#dependencies)
 * [Protocol](#protocol)
 * [Example database](#example-database)
+* [Flow chart and other information](#application-flow-chart-and-how-it-works)
 
 ## Installation
 
@@ -77,11 +78,14 @@ Below are some guidelines on how to use the application effectively:
   Use the provided API methods and functions to perform CRUD (Create, Read, Update, Delete) operations on your database tables.
   Utilize ProjectTartarus's business rule engine to encapsulate and execute complex business logic within your application.
 
-* Error Handling:
+    * Error Handling:
 
-  Implement error handling mechanisms within your application to gracefully manage exceptions or errors that may arise during database
-  interactions or business logic execution.
-  If during execution of your request an exception arises, database will send back a status:22. More about it in [protocol](#protocol)
+      Implement error handling mechanisms within your application to gracefully manage exceptions or errors that may arise during
+      database
+      interactions or business logic execution.
+      If during execution of your request an exception arises, database will send back a status:22. More about it
+      in [protocol](#protocol)
+      **All the erros that happened are writen into ProjectTartarus/logs/logs.log**
 
 * Use Case: Building Access Control System Integration
 * Actors:
@@ -224,11 +228,41 @@ Check ProjectTartarus/docs/protocol.md
 
 ## Example database
 
-![Database ERM](./docs/DBTableERM.png)
+![Database ERM](docs/images/DBTableERM.png)
 
 * admin_users
 * office_users
 * days
 * system_messages
 * system_log_ins
-* enterences_to_
+* enterences_to_office
+
+All of the tables can be accessed
+
+## Application flow chart and how it works
+
+![Flow Graph](docs/images/FlowGraph.svg)
+![Project idea](docs/images/projectIdea.png)
+
+Aplication was developed with SOLID principles in mind. <br>
+**Used architectural pattern:**
+
+* Three layer
+
+**Used design patterns:**
+
+* Creational:
+    * Singleton
+    * Factory
+
+* Structural:
+    * Decorator
+    * Facade
+    * Plugin
+
+* Behavioral:
+    * Chain of responsibility
+    * Command
+    * State
+    * Startegy 
+  
