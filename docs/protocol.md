@@ -9,7 +9,7 @@ Protocol for communication with core database app
 
 ## Send request
 
-This section is about your request for the application
+This section is about your request for the application. <br>
 
 ### Request structure
 
@@ -40,55 +40,55 @@ Given from administrator. Its needed for verification.
 
 <u>**If you dont add any parameters** returns all the data from the database</u>
 
-#### _POST_
-
---
-
 #### _DELETE_
 
---
-
-#### _UPDATE_
-
---
+* ID=(int)value <br>
+  **Example**:
+  ID=2 <br>
 
 ### DATA
 
-* Data in JSON format
+DATA=[{admin_id:none,name:Denis,surename:Kalashnikov,password:test}]
 
-```JSON
-[
-  {
-    "id": 1,
-    "name": "Anton"
-  },
-  {
-    "id": 2,
-    "name": "Notna"
-  }
-]
-```
-
-## Example
+## Examples of requests
 
 ### Get an object from the table
 
+```markdown
+APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;
 APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(NAME=ANTON)
 APIKEY=apitestkey1;EVENT=GET;TABLE=USERS;PARAMETERS=(ID=1)
+```
 
 ### Insert and object to the table
 
-APIKEY=apitestkey1;EVENT=POST;TABLE=USERS;DATA=[{user_id:1,name:Anton},{user_id:2,name:Notna}]
+```markdown
+APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:none,name:Denis,surename:Kalashnikov,password:test}]
+```
 
-## Supported Parameter Opperators
+### Update an object in the table
 
-'='
+```markdown
+APIKEY=apitestkey1;EVENT=UPDATE;TABLE=admin_users;DATA=[{admin_id:5,name:Someone,surename:Kalashnikov,password:newpas}] 
+```
+
+### Delete an object in the table
+
+```markdown
+APIKEY=apitestkey1;EVENT=DELETE;TABLE=admin_users;PARAMETERS=(ID=8)
+```
 
 # Response
 
-STATUS=`value`;DATA=`[{'table':'users','user_id':1,'name':'Anton'},{'user_id':2,'name':'Anton'}]`;
+This section is about the answer you get from the ProjectTartarus. <br>
+Response is formated in real JSON for better handling
+
+STATUS=`value`;DATA=`[{'table':'users','user_id':1,'name':'Anton'},{'table':'users','user_id':2,'name':'Anton'}]`;
 
 ## Possible status
+
+Currently only status 22 and 1 are implemented - ProjectTartarus returns only those
+22 if an error happened and 1 if the request was saved to the database
 
 ```
 Success - 1
@@ -97,26 +97,3 @@ Client exceptions - 23
 Service exceptions - 24
 Unknown exception - 22
 ```
-
-
-# testing
-post <br>
-APIKEY=apitestkey1;EVENT=POST;TABLE=admin_users;DATA=[{admin_id:none,name:Denis,surename:Kalashnikov,password:test}] `works`
-
-get <br>
-no params <br>
-APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users; `works`
-
-with params <br>
-APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton) `works`
-APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton,ID=4)
-APIKEY=apitestkey1;EVENT=GET;TABLE=admin_users;PARAMETERS=(NAME=Anton,admin_id=4)
-
-
-update
-APIKEY=apitestkey1;EVENT=UPDATE;TABLE=admin_users;DATA=[{admin_id:5,name:Someone,surename:Kalashnikov,password:newpas}]       `Works`
-
-
-delete 
-
-APIKEY=apitestkey1;EVENT=DELETE;TABLE=admin_users;PARAMETERS=(ID=8)  `Works`
