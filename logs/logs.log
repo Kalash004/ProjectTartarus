@@ -152,3 +152,21 @@ Exception: tony not in structure dict_keys(['table_name', 'admin_id', 'name', 's
 src.__models_for_all_layers.exceptions.BusinessRuleNotPassedException.BusinessRuleNotPassedException: Request had surname Kalashnikov in data [{'users_id': 'none', 'name': 'Tony', 'surename': 'Kalashnikov', 'password': 'kal'}]
  
  End |
+ 2024-04-18 11:55:52 - Exception happened : Request had name Anton in data [{'admin_id': 'none', 'name': 'Anton', 'surename': 'Kalashnikov', 'password': 'Kal'}] | traceback: Traceback (most recent call last):
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 39, in run
+    self.__main_loop(conn)  # Enters the main loop to handle incoming data
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\main_api_server\Reader.py", line 56, in __main_loop
+    Executor().execute(parsed_request, self.connection_manager, self.lock)  # Executes the parsed request
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\api_layer\executor\Executor.py", line 14, in execute
+    SendToBusinessLayerCommand(parsed_request=request).execute()
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\commands\SendToBusinessLayerCommand.py", line 13, in execute
+    BusinessRuleController().execute(self.request)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\controller\BusinessRuleController.py", line 44, in execute
+    rule.use(request=parsed_request)
+  File "C:\Users\kalas\Programming\Python\ProjectTartarus\src\program_layers\business_layer\rules_loader\rules\Rule_NameCantBeAnton.py", line 21, in use
+    raise BusinessRuleNotPassedException(f"Request had name Anton in data {request.data}")
+src.__models_for_all_layers.exceptions.BusinessRuleNotPassedException.BusinessRuleNotPassedException: Request had name Anton in data [{'admin_id': 'none', 'name': 'Anton', 'surename': 'Kalashnikov', 'password': 'Kal'}]
+ 
+ End |

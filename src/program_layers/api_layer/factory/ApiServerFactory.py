@@ -16,4 +16,4 @@ class ApiServerFactory(IFactory, metaclass=SingletonMeta):
             pass
 
     def produce(self):
-        return APIServer(port=self.port, adress=self.address, maximum_connections=self.max_cons)
+        return APIServer(self.address, self.port, self.max_cons)

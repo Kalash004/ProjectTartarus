@@ -11,4 +11,4 @@ class AnswererFactory(IFactory):
         self.con_manager = conn_manager
 
     def produce(self):
-        return Answerer(connection=self.conn, adress=self.adr, connection_manager=self.con_manager)
+        return Answerer(connection=self.conn, address=self.adr, connection_manager=self.con_manager)
